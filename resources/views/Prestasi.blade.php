@@ -70,10 +70,12 @@
             </div>
 
             <div class="mb-4" style="margin-top: 80px;"></div>
-            <div class="row ">
-                <div class="col-md-3"></div>
-                <div class="col-md-6 d-flex justify-content-center align-items-center mb-3">
-                    <button type="submit" class="btn btn-primary btn-block">Submit </button>
+            <div class="row justify-content-center align-items-center">
+                <div class="col-md-5 text-center mb-3">
+                    <button type="submit" class="btn btn-primary btn-block">Kembali</button>
+                </div>
+                <div class="col-md-5 text-center mb-3 ms-6">
+                    <button type="submit" class="btn btn-primary btn-block">Lanjut</button>
                 </div>
             </div>
 
