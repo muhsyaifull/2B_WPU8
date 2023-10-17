@@ -23,6 +23,10 @@ Route::get('/DataDiri', function () {
     return view('DataDiri');
 });
 
+Route::get('/ProfilePage', function () {
+    return view('profile_page');
+});
+
 // Route::get('/Register', function () {
 //     return view('Register');
 // });

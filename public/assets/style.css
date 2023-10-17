@@ -42,6 +42,18 @@
     background-image: url(img/background1.png);
 }
 
+.bgc-abu1{
+    background-color: rgb(197, 197, 197);
+}
+
+.bgc-abu2{
+    background-color: rgb(174, 172, 172);
+}
+
+.bgc-putih1{
+    background-color: rgb(255, 255, 255);
+}
+
 .font-jumbotron{
     font-family: "Libre Baskerville";
     font-size: 6rem;
@@ -73,5 +85,25 @@
     width: 17rem;
 }
 
+.padt3{
+    padding-top: 0.5rem;
+}
 
-  
+.f-libre{
+    font-family: "Libre Baskerville";
+}
+
+.fc-abu{
+    color: rgb(142, 142, 142);
+}
+.borCircle {
+    border-radius: 50%;
+}
+
+.list-d-n{
+    list-style: none;
+}
+
+.btn-width1{
+    width: 10rem;
+}
