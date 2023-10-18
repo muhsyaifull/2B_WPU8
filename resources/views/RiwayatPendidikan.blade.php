@@ -61,22 +61,22 @@
                     <label for="inputTanggalMulai" class="form-label">Waktu</label>
                 </div>
                 <div class="col-md-3 col-ms-12" aria-placeholder="Tanggal Mulai">
-                    <p>Tanggal Mulai</p>
+                    <p>Tanggal Masuk</p>
                     <input type="date" id="inputTanggalMulai" class="form-control" placeholder="Tanggal Mulai">
                 </div>
                 <div class="col-md-3">
-                    <p>Tanggal Selesai</p>
+                    <p>Tanggal Lulus</p>
                     <input type="date" id="inputTanggalSelesai" class="form-control" >
                 </div>
             </div>  
 
-            <div class="mb-4" style="margin-top: 20px;"></div>
+            {{-- <div class="mb-4" style="margin-top: 20px;"></div>
             <div class="row ">
                 <div class="col-md-3"></div>
                 <div class="col-md-6 d-flex justify-content-center align-items-center mb-3">
                     <button type="submit" class="btn btn-primary custom-btn">Tambah Riwayat Pendidikan + </button>
                 </div>
-            </div>
+            </div> --}}
 
             <div class="mb-4" style="margin-top: 80px;"></div>
             <div class="row justify-content-center align-items-center">

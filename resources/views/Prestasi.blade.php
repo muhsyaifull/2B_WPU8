@@ -51,7 +51,7 @@
                 </div>
             </div>  
 
-            <div class="row g-3 align-items-center mb-3">
+            {{-- <div class="row g-3 align-items-center mb-3">
                 <div class="col-md-3 col-sm-12">
                     <label for="inputTanggalMulai" class="form-label">Upload Sertifikat </label>
                 </div>
@@ -67,7 +67,7 @@
                 <div class="col-md-6 d-flex justify-content-center align-items-center mb-3">
                     <button type="submit" class="btn btn-primary custom-btn">Tambah Prestasi + </button>
                 </div>
-            </div>
+            </div> --}}
 
             <div class="mb-4" style="margin-top: 80px;"></div>
             <div class="row justify-content-center align-items-center">

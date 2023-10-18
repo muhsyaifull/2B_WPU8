@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class User extends Model
+class Alamat extends Model
 {
     use HasFactory;
     protected $primaryKey = 'id';
-    protected $fillable = ['email', 'password'];
-    protected $table = 'user';
+    protected $fillable = ['provinsi', 'kota', 'kecamatan', 'kelurahan', 'dusun', 'poscode'];
+    protected $table = 'alamat';
     public $timestamps = false;
 }

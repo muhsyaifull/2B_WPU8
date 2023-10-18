@@ -5,11 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class User extends Model
+class Resume extends Model
 {
     use HasFactory;
-    protected $primaryKey = 'id';
-    protected $fillable = ['email', 'password'];
-    protected $table = 'user';
+    protected $fillable = ['name', 'address', 'experience', 'education', 'email', 'no_telepon', 'skill', 'description'];
+    protected $table = 'resume';
     public $timestamps = false;
 }

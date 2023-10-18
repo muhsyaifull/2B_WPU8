@@ -23,13 +23,15 @@
     <div class="container mb-3">
         <h2 class="text-center" style="margin-top: 50px;" >Data Diri</h2>
         <div class="mb-5"></div>
-        <form>
+        <form action="{{ url('cliv')}}" method="POST">
+            @csrf
             <div class="row g-3 align-items-center mb-3">
                 <div class="col-md-3">
                     <label for="inputNama" class="form-label">Nama Lengkap</label>
                 </div>
                 <div class="col-md-6">
-                    <input type="text" id="inputNama" class="form-control" aria-describedby="passwordHelpInline">
+                    <input type="text" id="inputNama" class="form-control" aria-describedby="passwordHelpInline" name="nama"
+                    value="{{ isset($profile) ? $profile->nama : '' }}">
                 </div>
             </div>
 
@@ -38,7 +40,7 @@
                     <label for="inputTempatLahir" class="form-label">Tempat Lahir</label>
                 </div>
                 <div class="col-md-6">
-                    <input type="text" id="inputTempatLahir" class="form-control" aria-describedby="passwordHelpInline">
+                    <input type="text" id="inputTempatLahir" class="form-control" aria-describedby="passwordHelpInline" name="tempat_lahir">
                 </div>
             </div>
 
@@ -47,7 +49,7 @@
                     <label for="inputTanggalLahir" class="form-label">Tanggal Lahir</label>
                 </div>
                 <div class="col-md-6">
-                    <input type="date" id="inputTanggalLahir" class="form-control" aria-describedby="passwordHelpInline">
+                    <input type="date" id="inputTanggalLahir" class="form-control" aria-describedby="passwordHelpInline" name="tanggal_lahir">
                 </div>
             </div>
 
@@ -72,13 +74,13 @@
                     <label class="form-label">Agama</label>
                 </div>
                 <div class="col-md-6">
-                    <select class="form-select" aria-label="Agama">
+                    <select class="form-select" name="agama" aria-label="Agama">
                         <option selected>Agama</option>
-                        <option value="1">Islam</option>
-                        <option value="2">Kristen</option>
-                        <option value="3">Hindu</option>
-                        <option value="4">Buddha</option>
-                        <option value="5">Katolik</option>
+                        <option value="Islam">Islam</option>
+                        <option value="Kristen">Kristen</option>
+                        <option value="Hindu">Hindu</option>
+                        <option value="Buddha">Buddha</option>
+                        <option value="Katolik">Katolik</option>
                     </select>
                 </div>
             </div>
@@ -127,7 +129,7 @@
                   <label for="KodePos" class="form-label">Kode Pos</label>
               </div>
               <div class="col-md-6">
-                  <input type="text" id="KodePos" class="form-control" pattern="[0-9]{5}" placeholder="Contoh: 12345" oninput="this.value = this.value.replace(/[^0-9-]/g, '');">
+                  <input type="text" id="KodePos" class="form-control" name="poscode" pattern="[0-9]{5}" placeholder="Contoh: 12345" oninput="this.value = this.value.replace(/[^0-9-]/g, '');">
               </div>
             </div>
           
@@ -137,7 +139,7 @@
                   <label for="NomorTelepon" class="form-label">No. Telepon</label>
               </div>
               <div class="col-md-6">
-                  <input type="tel" id="NomorTelepon" class="form-control" pattern="[0-9{12}" placeholder="Contoh: 082245981890" oninput="this.value = this.value.replace(/[^0-9-]/g, '');">
+                  <input type="tel" id="NomorTelepon" class="form-control" name="no_telepon" pattern="[0-9{12}" placeholder="Contoh: 082245981890" oninput="this.value = this.value.replace(/[^0-9-]/g, '');">
               </div>
             </div>
 
@@ -146,7 +148,7 @@
                 <label for="exampleFormControlInput1" class="form-label">Email address</label>
               </div>
               <div class="col-md-6">
-                  <input type="email" id="inputNama" class="form-control" aria-describedby="passwordHelpInline" placeholder="name@contoh.com">
+                  <input type="email" id="inputNama" class="form-control" name="email" aria-describedby="passwordHelpInline" placeholder="name@contoh.com">
               </div>
             </div>
 
@@ -223,7 +225,9 @@
                 </div>
                 <div class="col-md-5 text-center mb-3 ms-6">
                     <button type="submit" class="btn btn-primary btn-block">Lanjut</button>
+                    
                 </div>
+
             </div>
         </form>
     </div>

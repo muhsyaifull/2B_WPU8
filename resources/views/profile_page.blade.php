@@ -1,14 +1,17 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>CLIV Website</title>
-    <link href="bootstrap/css/bootstrap.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/style.css">
+    <link href="{{ asset('bootstrap/css/bootstrap.css') }}" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ asset('assets/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/bootstrap/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="bootstrap/bootstrap-icons">
+    
+    {{-- <link rel="stylesheet" href="{{ asset('css/bootstrap-icons.css') }}"> --}}
+
   </head>
 
   <style>
@@ -40,8 +43,8 @@
             <ul class="navbar-nav ms-auto">
           </div>
           @guest
-          <a href="{{ route('login') }}" class="btn btn-outline-secondary">Login</a>
-          <a href="{{ route('register-user') }}" class="btn btn-primary ms-3" role="button">SignUp </a>
+          <a href="{{ route('login-page') }}" class="btn btn-outline-secondary">Login</a>
+          <a href="{{ route('register-page') }}" class="btn btn-primary ms-3" role="button">SignUp </a>
           @else
           <a href="{{ route('logout') }}" class="btn btn-outline-secondary">Logout</a>
           @endguest
@@ -61,21 +64,23 @@
                 </div>
 
                 <div class="col-md-6">
-                    <div class="mt-5">
-                        <ul>
-                            <li class="mt-3 list-d-n"><h2>Nama pengguna</h2></li>
-                            <li class="mb-3 mt-1 list-d-n"><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas dolorem est doloremque ratione, eligendi soluta impedit. Odit corrupti obcaecati cum, quia corporis sit neque sint. Voluptate optio totam laudantium labore nisi fugiat voluptates deserunt! Perspiciatis consequatur reiciendis ea, exercitationem totam eligendi tenetur excepturi, quod sapiente, tempore voluptate distinctio nulla qui architecto corporis mollitia necessitatibus nesciunt nisi aliquam iusto. Repellat at dolor modi inventore fuga, molestiae </p></li>
-                            <li class="mt-1 list-d-n fc-abu"><p>Islam</p></li>
-                            <li class="mt-1 list-d-n fc-abu"><p>Jalan Mahar Martanegara Kel. Leuwigajah Kec. Cimahi Selatan Kab. Bandung 40530</p></li>
-                            <li class="mt-1 list-d-n fc-abu"><p>08537281938 | syaifulfikri@gmail.com</p></li>
-                        </ul>
-                    </div>
-                </div>
+                  <div class="mt-5">
+                      <ul>
+                          <li class="mt-3 list-d-n"><h2>{{ $profile->nama }}</h2></li>
+                          <li class="mb-3 mt-1 list-d-n"><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas dolorem est doloremque ratione, eligendi soluta impedit. Odit corrupti obcaecati cum, quia corporis sit neque sint. Voluptate optio totam laudantium labore nisi fugiat voluptates deserunt! Perspiciatis consequatur reiciendis ea, exercitationem totam eligendi tenetur excepturi, quod sapiente, tempore voluptate distinctio nulla qui architecto corporis mollitia necessitatibus nesciunt nisi aliquam iusto. Repellat at dolor modi inventore fuga, molestiae </p></li>
+                          <li class="mt-1 list-d-n fc-abu"><p>{{ $profile->agama }}</p></li>
+                          <li class="mt-1 list-d-n fc-abu"><p>{{ $profile->alamat }}</p></li>
+                          <li class="mt-1 list-d-n fc-abu"><p>{{ $profile->no_telepon }} | {{ $profile->email }}</p></li>
+                      </ul>
+                  </div>
+              </div>
 
                 <div class="col-md-2 align-items-center">
                     <ul>
-                        <li class="mt-3 mb-3 list-d-n"><a class="btn btn-primary btn-width1" href="#" role="button">Edit Profil</a></li>
-                        <li class="mb-3 mt-1 list-d-n"><a class="btn btn-primary btn-width1" href="#" role="button">Lihat CV</a></li>
+                        <li class="mt-3 mb-3 list-d-n"><a class="btn btn-primary btn-width1" href="/DataDiri" role="button">Edit Profil</a></li>
+                        {{-- <li class="mb-3 mt-1 list-d-n"><a class="btn btn-primary btn-width1" href="{{ route('resume.showProfile', ['profile_id' => $profile->id]) }}" role="button">Lihat CV</a> --}}
+                        </li>
+                        <li class="mb-3 mt-1 list-d-n"><a class="btn btn-primary btn-width1" href="/resume" role="button">Buat CV</a></li>
                     </ul>
                 </div>
 
@@ -124,7 +129,7 @@
 
 
     {{-- Organisasi --}}
-    <div class="organisasi mt-1 d-flex flex-row">
+    {{-- <div class="organisasi mt-1 d-flex flex-row">
         <div class="container-fluid">
             <div class="row">
               <div class="col-md-1"></div>
@@ -144,7 +149,7 @@
               <div class="col-md-1"></div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
     {{-- Footer --}}
     <footer>
