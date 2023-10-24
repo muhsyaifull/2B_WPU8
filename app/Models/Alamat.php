@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Alamat extends Model
 {
     use HasFactory;
-    protected $primaryKey = 'id';
+    protected $primaryKey = 'alamat_id';
     protected $fillable = ['provinsi', 'kota', 'kecamatan', 'kelurahan', 'dusun', 'poscode'];
     protected $table = 'alamat';
     public $timestamps = false;

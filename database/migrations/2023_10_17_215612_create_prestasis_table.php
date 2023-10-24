@@ -11,17 +11,22 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('prestasis', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::create('prestasi', function (Blueprint $table) {
+            $table->id('prestasi_id');
+            $table->string('nama_prestasi');
+            $table->text('deskripsi_prestasi');
+            $table->date('tanggal_prestasi');
+            $table->unsignedBigInteger('profile_id');
+            $table->foreign('profile_id')->references('id')->on('profile');
         });
     }
+
 
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('prestasis');
+        Schema::dropIfExists('prestasi');
     }
 };
