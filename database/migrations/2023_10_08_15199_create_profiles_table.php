@@ -15,6 +15,7 @@ return new class extends Migration
         Schema::create('profile', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
+            $table->text('deskripsi');
             $table->string('tempat_lahir');
             $table->date('tanggal_lahir');
             $table->char('jenis_kelamin')->nullable();
@@ -22,8 +23,8 @@ return new class extends Migration
             $table->string('no_telepon');
             $table->string('email');
             $table->unsignedBigInteger('alamat_id');
-            // $table->unsignedBigInteger('user_id');
-            // $table->foreign('user_id')->references('id')->on('user');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('user');
             $table->foreign('alamat_id')->references('alamat_id')->on('alamat');
         });
     }

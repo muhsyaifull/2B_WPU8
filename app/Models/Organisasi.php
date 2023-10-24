@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Organisasi extends Model
 {
     use HasFactory;
+    protected $primaryKey = 'organisasi_id';
+    protected $fillable = [];
+    protected $table = 'organisasi';
+    public $timestamps = false;
 }
