@@ -33,8 +33,8 @@
             <ul class="navbar-nav ms-auto">
           </div>
           @guest
-          <a href="{{ route('login') }}" class="btn btn-outline-secondary">Login</a>
-          <a href="{{ route('register-user') }}" class="btn btn-primary ms-3" role="button">SignUp </a>
+          <a href="{{ route('login-page') }}" class="btn btn-outline-secondary">Login</a>
+          <a href="{{ route('register-page') }}" class="btn btn-primary ms-3" role="button">SignUp </a>
           @else
           <a href="{{ route('login') }}" class="nav-link active" >Profile</a>
           <a href="{{ route('logout') }}" class="btn btn-outline-secondary ms-5">Logout</a>

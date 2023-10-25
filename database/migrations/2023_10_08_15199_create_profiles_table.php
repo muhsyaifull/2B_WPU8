@@ -18,7 +18,7 @@ return new class extends Migration
             $table->text('deskripsi');
             $table->string('tempat_lahir');
             $table->date('tanggal_lahir');
-            $table->char('jenis_kelamin')->nullable();
+            $table->string('jenis_kelamin')->nullable();
             $table->string('agama');
             $table->string('no_telepon');
             $table->string('email');

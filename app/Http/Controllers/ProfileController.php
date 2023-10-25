@@ -91,7 +91,7 @@ class ProfileController extends Controller
         $profile = Profile::findOrFail($id);
 
         // Update data profil
-        $profile->nama = $request->nama;
+        $profile->nama = $request->nama;    
         $profile->tempat_lahir = $request->tempat_lahir;
         $profile->tanggal_lahir = $request->tanggal_lahir;
         $profile->jenis_kelamin = $request->jenis_kelamin;

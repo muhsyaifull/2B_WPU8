@@ -34,6 +34,15 @@
                     value="{{ isset($profile) ? $profile->nama : '' }}">
                 </div>
             </div>
+            
+            <div class="row g-3 align-items-center mb-3">
+                <div class="col-md-3">
+                    <label for="inputNama" class="form-label">Deskripsi</label>
+                </div>
+                <div class="col-md-6">
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="4"></textarea>
+                </div>
+            </div>
 
             <div class="row g-3 align-items-center mb-3">
                 <div class="col-md-3">
@@ -58,14 +67,11 @@
                     <label class="form-label">Jenis Kelamin</label>
                 </div>
                 <div class="col-md-6">
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-                        <label class="form-check-label" for="inlineRadio1">Laki-laki</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                        <label class="form-check-label" for="inlineRadio2">Perempuan</label>
-                    </div>
+                    <select class="form-select" aria-label="jenis_kelamin">
+                        <option selected></option>
+                        <option value="Laki-laki">Laki-laki</option>
+                        <option value="Perempuan">Perempuan</option>
+                    </select>
                 </div>
             </div>
 
@@ -75,7 +81,7 @@
                 </div>
                 <div class="col-md-6">
                     <select class="form-select" name="agama" aria-label="Agama">
-                        <option selected>Agama</option>
+                        <option selected></option>
                         <option value="Islam">Islam</option>
                         <option value="Kristen">Kristen</option>
                         <option value="Hindu">Hindu</option>
@@ -120,7 +126,7 @@
                   <label for="inputNama" class="form-label"></label>
               </div>
               <div class="col-md-6">
-                  <input type="text" id="inputNama" class="form-control" aria-describedby="passwordHelpInline" placeholder="Dusun">
+                  <input type="text" name="dusun" id="dusun" class="form-control" aria-describedby="passwordHelpInline" placeholder="Dusun">
               </div>
             </div>
 
@@ -225,7 +231,7 @@
                 </div>
                 <div class="col-md-5 text-center mb-3 ms-6">
                     <button type="submit" class="btn btn-primary btn-block">Lanjut</button>
-                    
+
                 </div>
 
             </div>

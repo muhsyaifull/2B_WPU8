@@ -17,19 +17,31 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('DataDiri');
+    return view('Home');
 });
 
 Route::get('/Home', function () {
     return view('Home');
 })->name('homepage');
 
+Route::get('/navbarUser', function () {
+    return view('component/navbarUser');
+});
+
+Route::get('/UserPage', function () {
+    return view('HomeUser');
+})->name('UserPage');
+
+Route::get('/DaftarCV', function () {
+    return view('HalamanDaftarCV');
+})->name('DaftarCV');
+
 Route::get('/ProfilePage/{id}', [ProfileController::class, 'showProfile'])->name('profil.show');
 Route::resource('cliv',ProfileController::class);
 
 Route::get('/DataDiri', function () {
     return view('DataDiri');
-});
+})->name('DataDiri');
 
 Route::get('/Pendidikan', function () {
     return view('RiwayatPendidikan');
@@ -41,7 +53,7 @@ Route::get('/Prestasi', function () {
 
 Route::get('/Organisasi', function () {
     return view('Organisasi');
-});
+})->name('Organisasi');
 
 Route::get('/register', function () {
     return view('Register');
