@@ -22,10 +22,20 @@ return new class extends Migration
             $table->string('agama');
             $table->string('no_telepon');
             $table->string('email');
-            $table->unsignedBigInteger('alamat_id');
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('user');
-            $table->foreign('alamat_id')->references('alamat_id')->on('alamat');
+            $table->timestamps();
+
+        });
+
+        Schema::create('alamat', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('user_id')->constrained('profile');
+            $table->string('provinsi');
+            $table->string('kota');
+            $table->string('kecamatan');
+            $table->string('kelurahan');
+            $table->string('dusun')->nullable();
+            $table->string('poscode');
+            $table->timestamps();
         });
     }
 
@@ -35,5 +45,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('profile');
+        Schema::dropIfExists('alamat');
+
     }
 };

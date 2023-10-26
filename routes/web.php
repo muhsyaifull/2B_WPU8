@@ -43,9 +43,18 @@ Route::get('/DataDiri', function () {
     return view('DataDiri');
 })->name('DataDiri');
 
+
+Route::get('/Pendidikan', [PendidikanController::class, 'index'])->name('pendidikan.index');
+Route::get('/Pendidikan/create', [PendidikanController::class, 'create'])->name('pendidikan.create');
+Route::post('/Pendidikan', [PendidikanController::class, 'store'])->name('pendidikan.store');
+Route::put('/profile/{id}', [ProfileController::class, 'update'])->name('profile.update');
+
+
 Route::get('/Pendidikan', function () {
     return view('RiwayatPendidikan');
 });
+
+
 
 Route::get('/Prestasi', function () {
     return view('Prestasi');

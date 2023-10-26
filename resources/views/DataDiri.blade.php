@@ -37,10 +37,10 @@
             
             <div class="row g-3 align-items-center mb-3">
                 <div class="col-md-3">
-                    <label for="inputNama" class="form-label">Deskripsi</label>
+                    <label for="inputDeskripsi" class="form-label">Deskripsi</label>
                 </div>
                 <div class="col-md-6">
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="4"></textarea>
+                    <input type="text" id="inputDeskripsi" class="form-control" aria-describedby="passwordHelpInline" name="deskripsi">
                 </div>
             </div>
 
@@ -67,7 +67,7 @@
                     <label class="form-label">Jenis Kelamin</label>
                 </div>
                 <div class="col-md-6">
-                    <select class="form-select" aria-label="jenis_kelamin">
+                    <select class="form-select" name="jenis_kelamin" aria-label="Jenis_kelamin">
                         <option selected></option>
                         <option value="Laki-laki">Laki-laki</option>
                         <option value="Perempuan">Perempuan</option>

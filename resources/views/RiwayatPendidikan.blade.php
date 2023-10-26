@@ -23,17 +23,18 @@
     <div class="container">
         <h2 class="text-center" style="margin-top: 50px;" >Riwayat Pendidikan</h2>
         <div class="mb-5"></div>
-        <form>
+        <form action = "{{ route('pendidikan.store') }}" method="POST">
+            @csrf
             <div class="row g-3 align-items-center mb-3">
                 <div class="col-md-3">
                     <label class="form-label">Jenjang</label>
                 </div>
                 <div class="col-md-6">
-                    <select class="form-select" aria-label="Agama">
+                    <select class="form-select" name="jenjang" aria-label="Jenjang">
                         <option selected></option>
-                        <option value="1">SD</option>
-                        <option value="2">SMP</option>
-                        <option value="3">SMA/SMK</option>
+                        <option value="SD">SD</option>
+                        <option value="SMP">SMP</option>
+                        <option value="SMA/SMK">SMA/SMK</option>
                     </select>
                 </div>
             </div>
@@ -43,7 +44,7 @@
                     <label for="inputNama" class="form-label">Nama Sekolah</label>
                 </div>
                 <div class="col-md-6">
-                    <input type="text" id="inputNama" class="form-control">
+                    <input type="text" id="nama_sekolah" name="nama_sekolah" aria-label="Nama_sekolah" class="form-control">
                 </div>
             </div>
 
@@ -52,7 +53,7 @@
                     <label for="inputNama" class="form-label">Lokasi</label>
                 </div>
                 <div class="col-md-6">
-                    <input type="text" id="inputNama" class="form-control">
+                    <input type="text" id="lokasi" name="lokasi" aria-label="Lokasi" class="form-control">
                 </div>
             </div>
 
@@ -62,11 +63,11 @@
                 </div>
                 <div class="col-md-3 col-ms-12" aria-placeholder="Tanggal Mulai">
                     <p>Tanggal Masuk</p>
-                    <input type="date" id="inputTanggalMulai" class="form-control" placeholder="Tanggal Mulai">
+                    <input type="date" id="inputTanggalMulai" name="tanggal_mulai" class="form-control" placeholder="Tanggal Mulai">
                 </div>
                 <div class="col-md-3">
                     <p>Tanggal Lulus</p>
-                    <input type="date" id="inputTanggalSelesai" class="form-control" >
+                    <input type="date" id="inputTanggalLulus" name="tanggal_lulus" class="form-control" >
                 </div>
             </div>  
 
@@ -84,7 +85,7 @@
                     <button type="submit" class="btn btn-primary btn-block">Kembali</button>
                 </div>
                 <div class="col-md-5 text-center mb-3 ms-6">
-                    <button type="submit" class="btn btn-primary btn-block" onclick="lanjut()">Lanjut</button>
+                    <button type="submit" class="btn btn-primary btn-block" >Lanjut</button>
                 </div>
             </div>
 

@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Pendidikan extends Model
 {
     use HasFactory;
-    protected $primaryKey = 'pendidikan_id';
-    protected $fillable = [];
     protected $table = 'pendidikan';
-    public $timestamps = false;
+    protected $fillable = ['user_id', 'jenjang','nama_sekolah', 'lokasi', 'tanggal_masuk', 'tanggal_lulus'];
+    
+
 }

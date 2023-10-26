@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Profile;
 use App\Models\Alamat;
+use App\Models\Pendidikan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -47,41 +48,71 @@ class ProfileController extends Controller
      */
     public function store(Request $request)
     {
+       
+        // Validasi data masukan
+        $validatedData = $request->validate([
+            'nama' => 'required',
+            'deskripsi' => 'required',
+            'tempat_lahir' => 'required',
+            'tanggal_lahir' => 'required',
+            'agama' => 'required',
+            'jenis_kelamin' => 'required',
+            'no_telepon' => 'required',
+            'email' => 'required',
+        ],[
+            'nama.required'=> 'wajib d isi',
+            'deskripsi.required' => 'required',
+            'tempat_lahir.required' => 'required',
+            'tanggal_lahir.required' => 'required',
+            'agama.required' => 'required',
+            'jenis_kelamin.required' => 'jenis kelamin isi ath bro',
+            'no_telepon.required' => 'masukin bro',
+            'email.required' => 'masukin bro',
+        ]);
+        // dd($validatedData);
+
+        // Simpan data baru ke dalam database
+        $profile = Profile::create($validatedData);
+
         // Simpan data alamat terlebih dahulu
-        $alamat = new alamat([
+        $alamatData = [
+            'user_id' => $profile->id,
             'provinsi' => $request->provinsi,
             'kota' => $request->kota,
             'kecamatan' => $request->kecamatan,
             'kelurahan' => $request->kelurahan,
             'dusun' => $request->dusun,
             'poscode' => $request->poscode,
-        ]);
-        $alamat->save();
-
-        // Ambil ID alamat yang baru dibuat
-        $alamatId = $alamat->id;
-
-        // Simpan data profil dengan ID alamat yang baru
-        $data = [
-            'nama' => $request->nama,
-            'tempat_lahir' => $request->tempat_lahir,
-            'tanggal_lahir' => $request->tanggal_lahir,
-            'jenis_kelamin' => $request->jenis_kelamin,
-            'agama' => $request->agama,
-            'no_telepon' => $request->no_telepon,
-            'email' => $request->email,
-            'alamat_id' => $alamatId, // Menggunakan ID alamat yang baru
         ];
+        // dd($alamatData);
+        
+        Alamat::create($alamatData);
 
-        // Simpan data profil
-        $profile = Profile::create($data);
-
-        // Di sini Anda dapat mengambil ID profil yang baru dibuat
-        $profileId = $profile->id;
-
-        // Mengarahkan pengguna ke halaman "profile_page" dengan ID profil
-        return redirect()->route('profil.show', ['id' => $profileId]);
+        // Redirect ke halaman index atau ke halaman lain yang sesuai
+        return redirect('/Pendidikan');
     }
+
+    public function Pendidikan(Request $request,string $id)
+    {
+
+        $profile = Profile::findOrFail($id); // Mendapatkan profil berdasarkan ID
+    
+        $pendidikanData = [
+            'user_id' => $profile->id,
+            'jenjang' => $request->jenjang,
+            'nama_sekolah' => $request->nama_sekolah,
+            'lokasi' => $request->lokasi,
+            'tanggal_masuk' => $request->tanggal_masuk,
+            'tanggal_lulus' => $request->tanggal_lulus,
+        ];
+        dd($pendidikanData);
+    
+        Pendidikan::create($pendidikanData);
+    
+        // Redirect ke halaman lain atau sesuai kebutuhan
+        return redirect('/Organisasi');
+    }   
+    
 
         /**
      * Update the specified resource in storage.
