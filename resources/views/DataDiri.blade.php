@@ -40,9 +40,9 @@
                     <label for="inputDeskripsi" class="form-label">Deskripsi</label>
                 </div>
                 <div class="col-md-6">
-                    <input type="text" id="inputDeskripsi" class="form-control" aria-describedby="passwordHelpInline" name="deskripsi">
+                    <textarea id="inputDeskripsi" class="form-control" aria-describedby="passwordHelpInline" name="deskripsi"></textarea>
                 </div>
-            </div>
+            </div>            
 
             <div class="row g-3 align-items-center mb-3">
                 <div class="col-md-3">
@@ -157,6 +157,141 @@
                   <input type="email" id="inputNama" class="form-control" name="email" aria-describedby="passwordHelpInline" placeholder="name@contoh.com">
               </div>
             </div>
+            
+            {{-- pedidikan --}}
+            <div class="row g-3 align-items-center mb-3">
+                <h2 class="text-center" style="margin-top: 50px;" >Riwayat Pendidikan</h2>
+                <div class="col-md-3">
+                    <label class="form-label">Jenjang</label>
+                </div>
+                <div class="col-md-6">
+                    <select class="form-select" name="jenjang" aria-label="Jenjang">
+                        <option selected></option>
+                        <option value="SD">SD</option>
+                        <option value="SMP">SMP</option>
+                        <option value="SMA/SMK">SMA/SMK</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row g-3 align-items-center mb-3">
+                <div class="col-md-3">
+                    <label for="inputNama" class="form-label">Nama Sekolah</label>
+                </div>
+                <div class="col-md-6">
+                    <input type="text" id="nama_sekolah" name="nama_sekolah" aria-label="Nama_sekolah" class="form-control">
+                </div>
+            </div>
+
+            <div class="row g-3 align-items-center mb-3">
+                <div class="col-md-3">
+                    <label for="inputNama" class="form-label">Lokasi</label>
+                </div>
+                <div class="col-md-6">
+                    <input type="text" id="lokasi" name="lokasi" aria-label="Lokasi" class="form-control">
+                </div>
+            </div>
+
+            <div class="row g-3 align-items-center mb-3">
+                <div class="col-md-3 col-sm-12">
+                    <label for="inputTanggalMulai" class="form-label">Waktu</label>
+                </div>
+                <div class="col-md-3 ">
+                    <p>Tanggal Masuk</p>
+                    <input type="date" id="inputTanggalMasuk" name="tanggal_mulai" class="form-control">
+                </div>
+                <div class="col-md-3">
+                    <p>Tanggal Lulus</p>
+                    <input type="date" id="inputTanggalLulus" name="tanggal_lulus" class="form-control" >
+                </div>
+            </div>  
+
+            <div class="mb-4" style="margin-top: 20px;"></div>
+            <div class="row ">
+                <div class="col-md-3"></div>
+                <div class="col-md-6 d-flex justify-content-center align-items-center mb-3">
+                    <button type="submit" class="btn btn-primary custom-btn">Tambah Riwayat Pendidikan + </button>
+                </div>
+            </div>
+
+            {{-- riwayat pekerjaan --}}
+            
+            <div class="row g-3 align-items-center mb-3">
+                <h2 class="text-center" style="margin-top: 50px;" >Riwayat Pekerjaan</h2>
+                <div class="col-md-3">
+                    <label for="inputNama" class="form-label">Nama Perusahaan</label>
+                </div>
+                <div class="col-md-6">
+                    <input type="text" id="nama_perusahaan" name="nama_perusahaan" aria-label="Nama_perusahaan" class="form-control">
+                </div>
+            </div>
+
+            <div class="row g-3 align-items-center mb-3">
+                <div class="col-md-3">
+                    <label for="inputNama" class="form-label">Posisi</label>
+                </div>
+                <div class="col-md-6">
+                    <input type="text" id="posisi" name="posisi" aria-label="Posisi" class="form-control">
+                </div>
+            </div>
+
+            <div class="row g-3 align-items-center mb-3">
+                <div class="col-md-3">
+                    <label for="inputNama" class="form-label">Lokasi</label>
+                </div>
+                <div class="col-md-6">
+                    <input type="text" id="lokasi" name="lokasi" aria-label="Lokasi" class="form-control">
+                </div>
+            </div>
+
+            <div class="row g-3 align-items-center mb-3">
+                <div class="col-md-3 col-sm-12">
+                    <label for="inputTanggalMulai" class="form-label">Waktu</label>
+                </div>
+                <div class="col-md-3 ">
+                    <p>Tanggal Masuk</p>
+                    <input type="date" id="inputTanggalMasukkerja" name="tanggal_mulai_kerja" class="form-control">
+                </div>
+                <div class="col-md-3">
+                    <p>Tanggal Keluar</p>
+                    <input type="date" id="inputTanggalKeluaarKerja" name="tanggal_keluar_kerja" class="form-control" >
+                </div>
+            </div>  
+
+            <div class="mb-4" style="margin-top: 20px;"></div>
+            <div class="row ">
+                <div class="col-md-3"></div>
+                <div class="col-md-6 d-flex justify-content-center align-items-center mb-3">
+                    <button type="submit" class="btn btn-primary custom-btn">Tambah Riwayat Pekerjaan + </button>
+                </div>
+            </div>
+
+            <div class="row g-3 align-items-center mb-3">
+                <h2 class="text-center" style="margin-top: 50px;" >Skill</h2>
+                <div class="col-md-3">
+                    <label for="inputNama" class="form-label">Nama</label>
+                </div>
+                <div class="col-md-6">
+                    <input type="text" id="nama_skill" name="nama_skill" aria-label="Nama_skill" class="form-control">
+                </div>
+            </div>
+            <div class="row g-3 align-items-center mb-3">
+                <div class="col-md-3">
+                    <label for="inputDeskripsi" class="form-label">Deskripsi</label>
+                </div>
+                <div class="col-md-6">
+                    <textarea id="inputDeskripsiSkill" class="form-control" aria-describedby="passwordHelpInline" name="deskripsi_skill"></textarea>
+                </div>
+            </div> 
+            <div class="mb-4" style="margin-top: 20px;"></div>
+            <div class="row ">
+                <div class="col-md-3"></div>
+                <div class="col-md-6 d-flex justify-content-center align-items-center mb-3">
+                    <button type="submit" class="btn btn-primary custom-btn">Tambah Skill + </button>
+                </div>
+            </div>   
+
+
 
             <script>
               fetch(`https://kanglerian.github.io/api-wilayah-indonesia/api/provinces.json`)
@@ -225,19 +360,21 @@
             </script>
 
             <div class="mb-4" style="margin-top: 80px;"></div>
-            <div class="row justify-content-center align-items-center">
-                <div class="col-md-5 text-center mb-3">
-                    <button type="submit" class="btn btn-primary btn-block">Kembali</button>
-                </div>
-                <div class="col-md-5 text-center mb-3 ms-6">
-                    <button type="submit" class="btn btn-primary btn-block">Lanjut</button>
+                 <div class="row justify-content-center align-items-center">
+                    <div class="col-md-5 text-center mb-3 ms-2">
+                        <button type="submit" class="btn btn-primary btn-block">Selesai</button>
+                    </div>
+                </div> 
 
-                </div>
-
-            </div>
         </form>
-    </div>
-
+            <div class="mb-4" style="margin-top: 80px;"></div>
+                <div class="row justify-content-center align-items-center">
+                    <div class="col-md-5 text-center mb-3">
+                        <a href="{{ route('DaftarCV') }}">
+                            <button id="tombolKembali" class="btn btn-primary btn-block">Kembali</button>
+                        </a>
+                    </div> 
+                </div>       
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 </html>

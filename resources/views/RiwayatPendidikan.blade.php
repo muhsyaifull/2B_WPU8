@@ -20,6 +20,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent"></div>
         </div>
     </nav>
+    
     <div class="container">
         <h2 class="text-center" style="margin-top: 50px;" >Riwayat Pendidikan</h2>
         <div class="mb-5"></div>

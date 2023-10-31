@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use App\Models\Profile;
 use App\Models\Alamat;
 use App\Models\Pendidikan;
+use App\Models\Pekerjaan;
+use App\Models\Skill;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -88,32 +90,45 @@ class ProfileController extends Controller
         
         Alamat::create($alamatData);
 
-        // Redirect ke halaman index atau ke halaman lain yang sesuai
-        return redirect('/Pendidikan');
-    }
-
-    public function Pendidikan(Request $request,string $id)
-    {
-
-        $profile = Profile::findOrFail($id); // Mendapatkan profil berdasarkan ID
+        // $profile = Profile::findOrFail($id); // Mendapatkan profil berdasarkan ID
     
         $pendidikanData = [
             'user_id' => $profile->id,
             'jenjang' => $request->jenjang,
             'nama_sekolah' => $request->nama_sekolah,
             'lokasi' => $request->lokasi,
-            'tanggal_masuk' => $request->tanggal_masuk,
+            'tanggal_masuk' => $request->tanggal_mulai,
             'tanggal_lulus' => $request->tanggal_lulus,
         ];
-        dd($pendidikanData);
     
         Pendidikan::create($pendidikanData);
+
+        $pekerjaanData = [
+            'user_id' => $profile->id,
+            'nama_perusahaan' => $request->nama_perusahaan,
+            'posisi' => $request->posisi,
+            'lokasi' => $request->lokasi,
+            'tanggal_masuk_kerja' => $request->tanggal_mulai_kerja,
+            'tanggal_keluar_kerja' => $request->tanggal_keluar_kerja,
+        ];
+        // dd($pekerjaanData);
+    
+        Pekerjaan::create($pekerjaanData);
+
+        $skillData = [
+            'user_id' => $profile->id,
+            'nama_skill' => $request->nama_skill,
+            'deskripsi_skill' => $request->deskripsi_skill,
+        ];
+        // dd($skillData);
+
+        Skill::create($skillData);
     
         // Redirect ke halaman lain atau sesuai kebutuhan
-        return redirect('/Organisasi');
-    }   
-    
+        return redirect('/DaftarCV');
 
+    }
+    
         /**
      * Update the specified resource in storage.
      */

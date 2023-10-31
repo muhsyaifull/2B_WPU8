@@ -45,7 +45,7 @@ class PendidikanController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request,string $id)
+    public function store(Request $request, $id)
     {
        
         $profile = Profile::findOrFail($id); // Mendapatkan profil berdasarkan ID
@@ -58,7 +58,7 @@ class PendidikanController extends Controller
             'tanggal_masuk' => $request->tanggal_masuk,
             'tanggal_lulus' => $request->tanggal_lulus,
         ];
-        dd($pendidikanData);
+        // dd($pendidikanData);
     
         Pendidikan::create($pendidikanData);
     

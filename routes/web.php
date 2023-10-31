@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PendidikanController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ResumeController;
 use Illuminate\Support\Facades\Route;
