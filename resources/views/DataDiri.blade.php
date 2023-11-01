@@ -27,6 +27,15 @@
             @csrf
             <div class="row g-3 align-items-center mb-3">
                 <div class="col-md-3">
+                    <label for="inputImage" class="form-label">Upload Image</label>
+                </div>
+                <div class="col-md-6">
+                    <input type="file" id="inputImage" class="form-control" name="image" accept="image/*">
+                </div>
+            </div>
+
+            <div class="row g-3 align-items-center mb-3">
+                <div class="col-md-3">
                     <label for="inputNama" class="form-label">Nama Lengkap</label>
                 </div>
                 <div class="col-md-6">
@@ -207,12 +216,12 @@
             </div>  
 
             <div class="mb-4" style="margin-top: 20px;"></div>
-            <div class="row ">
+            {{-- <div class="row ">
                 <div class="col-md-3"></div>
                 <div class="col-md-6 d-flex justify-content-center align-items-center mb-3">
                     <button type="submit" class="btn btn-primary custom-btn">Tambah Riwayat Pendidikan + </button>
                 </div>
-            </div>
+            </div> --}}
 
             {{-- riwayat pekerjaan --}}
             
@@ -259,12 +268,12 @@
             </div>  
 
             <div class="mb-4" style="margin-top: 20px;"></div>
-            <div class="row ">
+            {{-- <div class="row ">
                 <div class="col-md-3"></div>
                 <div class="col-md-6 d-flex justify-content-center align-items-center mb-3">
                     <button type="submit" class="btn btn-primary custom-btn">Tambah Riwayat Pekerjaan + </button>
                 </div>
-            </div>
+            </div> --}}
 
             <div class="row g-3 align-items-center mb-3">
                 <h2 class="text-center" style="margin-top: 50px;" >Skill</h2>
@@ -284,12 +293,12 @@
                 </div>
             </div> 
             <div class="mb-4" style="margin-top: 20px;"></div>
-            <div class="row ">
+            {{-- <div class="row ">
                 <div class="col-md-3"></div>
                 <div class="col-md-6 d-flex justify-content-center align-items-center mb-3">
                     <button type="submit" class="btn btn-primary custom-btn">Tambah Skill + </button>
                 </div>
-            </div>   
+            </div>    --}}
 
 
 

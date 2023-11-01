@@ -21,19 +21,23 @@
             <div class="col-md-10">
                 <div class="daftarCV d-flex align-content-start flex-wrap">
                     <div class="daftar2CV d-flex align-content-start flex-wrap">
-                        @php
-                        for ($i=0; $i < 5; $i++) { 
-                        @endphp
-                            <div class="card-inner mt-3 ms-3">
-                                <div class="text-center">
-                                    <button class="btn btn-success btn-width2 mb-2 mt-5">Lihat CV</button>
-                                    <button class="btn btn-primary btn-width2 mb-2">Edit CV</button>
-                                    <button class="btn btn-danger btn-width2 mb-2">Hapus CV</button>
-                                </div>
+                        @foreach ($profiles as $profile)
+                        <div class="card-inner mt-3 ms-3">
+                            <div class="text-center">
+                                <a href="{{ route('profil.show', ['id' => $profile->id]) }}">
+                                    <button class="btn btn-success btn-width2 mb-2 mt-5">Lihat</button>
+                                </a>
+                                <a href="{{ route('profile.edit', $profile->id) }}">
+                                    <button class="btn btn-primary btn-width2 mb-2">Edit</button>
+                                </a>
+                                <form method="POST" action="{{ route('profiles.destroy', $profile->id) }}">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-danger btn-width2 mb-2">Hapus</button>
+                                </form>
                             </div>
-                        @php     
-                            }
-                        @endphp
+                        </div>
+                        @endforeach
                     </div>
     
                     <div class="tambahCV d-flex align-content-start flex-wrap">

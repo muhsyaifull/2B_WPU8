@@ -18,7 +18,9 @@ class AuthController extends Controller
     if($user){
         if($user->password == $password){
             session(['user_id' => $user->id]);
-            return redirect()->route('profil.show', ['id' => Session::get('user_id')]);
+            // return redirect()->route('homepage');
+            return redirect()->route('homepage', ['id' => $user->id]);
+            // return redirect()->route('profil.show', ['id' => Session::get('user_id')]);
         } else {
             echo "email atau password salah";
         }
@@ -27,6 +29,7 @@ class AuthController extends Controller
     }
     
    }
+   
    public function Logout(){
     Session::flush();
     return redirect()->route('login-page');
@@ -42,6 +45,7 @@ class AuthController extends Controller
 
         // Buat dan simpan pengguna baru ke dalam database
         $user = new User();
+        $user->username = $request->input('username');
         $user->email = $request->input('email');
         $user->password = $request->input('password');
         // $user->password = Hash::make($request->input('password'));

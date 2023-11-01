@@ -17,18 +17,26 @@
           <div class="d-flex justify-content-center">
               <div class="card">
                   <div class="card-body text-center">
-                      <form>
+                    <form action="{{ route('register-valid') }}" method="POST">
+                        @csrf
                           <h1>REGISTER</h1>
+                          <div class="username p-form">
+                            <label for="inputEmail3" class="col-sm-2 col-form-label"></label>
+                            <div class="col-sm-10">
+                                <input type="username" class="form-control sz-input" id="inputUsername3" placeholder="Masukkan Username" style="width: 100%;" name="username">
+                            </div>
+                            </div>
+
                           <div class="username p-form">
                               <label for="inputEmail3" class="col-sm-2 col-form-label"></label>
                               <div class="col-sm-10">
-                                  <input type="email" class="form-control sz-input" id="inputEmail3" placeholder="Masukkan Email" style="width: 100%;">
+                                  <input type="email" class="form-control sz-input" id="inputEmail3" placeholder="Masukkan Email" style="width: 100%;" name="email">
                               </div>
                           </div>
 
                           <div class="password mt-3 mb-3 p-form">
                               <div class="col-sm-10">
-                                  <input type="password" class="form-control sz-input" id="inputPassword3" placeholder="Masukkan Password" style="width: 100%;">
+                                  <input type="password" class="form-control sz-input" id="inputPassword3" placeholder="Masukkan Password" style="width: 100%;" name="password">
                               </div>
                           </div>
 

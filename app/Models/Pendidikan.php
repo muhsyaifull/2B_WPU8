@@ -12,4 +12,5 @@ class Pendidikan extends Model
     protected $fillable = ['user_id', 'jenjang','nama_sekolah', 'lokasi', 'tanggal_masuk', 'tanggal_lulus'];
     
 
+
 }
