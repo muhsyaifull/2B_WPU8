@@ -33,11 +33,15 @@
             <ul class="navbar-nav ms-auto">
           </div>
           @guest
-          <a href="{{ route('login-page') }}" class="btn btn-outline-secondary">Login</a>
-          <a href="{{ route('register-page') }}" class="btn btn-primary ms-3" role="button">SignUp </a>
-          @else
-          <a href="{{ route('login') }}" class="nav-link active" >Profile</a>
-          <a href="{{ route('logout') }}" class="btn btn-outline-secondary ms-5">Logout</a>
+            <a href="{{ route('login-page') }}" class="btn btn-outline-secondary">Login</a>
+            <a href="{{ route('register-page') }}" class="btn btn-primary ms-3" role="button">Sign Up</a>
+            {{-- <h1 class="font-jumbotron pt-5 pb-5 pe-5 ps-5">{{ Auth::user()->username }}</h1> --}}
+            @if (Auth::check())
+              <a href="{{ route('profile.show', ['id' => Auth::user()->id]) }}" cslass="nav-link active">{{ Auth::user()->username }}</a>
+            @endif
+           @else
+            <a href="{{ route('profile.show', ['id' => Auth::user()->id]) }}" class="nav-link active">{{ Auth::user()->username }}</a>
+            <a href="{{ route('logout') }}" class="btn btn-outline-secondary ms-5">Logout</a>
           @endguest
         </div>
       </nav>

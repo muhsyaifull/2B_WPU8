@@ -18,13 +18,14 @@
             </li>
             <li class="nav-item">
                 <a href="{{ route('DaftarCV') }}" class="btn btn-primary ms-3 btn-width3" role="button">CV</a>
+                <a href="{{ route('DataDiri') }}" class="btn btn-primary ms-3 btn-width5" role="button">Create Data</a>
             </li>
         </ul>
         </div>
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             </li>
             <li class="nav-item">
-                <a href="{{ route('homepage') }}" class="btn btn-primary ms-3" role="button">Logout</a>
+                {{-- <a href="{{ route('homepage') }}" class="btn btn-primary ms-3" role="button">Logout</a> --}}
             </li>
         </ul>
     </div>

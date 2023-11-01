@@ -17,7 +17,9 @@ class ProfileController extends Controller
     public function editProfile($id)
     {
         $profile = Profile::findOrFail($id);
-        return view('datadiri', compact('profile'));
+        // Anda dapat menambahkan validasi atau logika tambahan di sini sesuai kebutuhan
+
+        return view('/EditDataDiri', compact('profile'));
     }
 
     public function showProfile($id)
@@ -29,12 +31,19 @@ class ProfileController extends Controller
         //     return redirect()->route('login-page');
         // }
         $profile = Profile::findOrFail($id);
-        return view('profile_page', compact('profile'));
+        // return view('profile_page', compact('profile'));
+        $alamat = Alamat::where('user_id', $id)->first();
+        $pekerjaan = Pekerjaan::where('user_id', $id)->first();
+        $pendidikan = Pendidikan::where('user_id', $id)->first();
+        $skill = Skill::where('user_id', $id)->first();
+
+        return view('profile_page', compact('profile', 'alamat', 'pekerjaan', 'pendidikan', 'skill'));
     }
 
     public function index()
     {
-        return view('Home');
+        $profiles = Profile::all(); // Fetch all profiles or adjust the query as needed
+        return view('HalamanDaftarCV', compact('profiles'));
     }
 
     /**
@@ -72,7 +81,13 @@ class ProfileController extends Controller
             'email.required' => 'masukin bro',
         ]);
         // dd($validatedData);
-
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('images'), $imageName);
+            $validatedData['image_path'] = 'images/' . $imageName; // Save the image path in the database
+            // You should save $imageName to the database under an appropriate column (e.g., 'image_path')
+        }
         // Simpan data baru ke dalam database
         $profile = Profile::create($validatedData);
 
@@ -125,32 +140,63 @@ class ProfileController extends Controller
         Skill::create($skillData);
     
         // Redirect ke halaman lain atau sesuai kebutuhan
-        return redirect('/DaftarCV');
+        return redirect()->route('daftar-profile');
 
     }
     
         /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
-    {
-        $profile = Profile::findOrFail($id);
+    public function update(Request $request, $id)
+{
+    // Find the profile you want to update
+    $profile = Profile::findOrFail($id);
 
-        // Update data profil
-        $profile->nama = $request->nama;    
-        $profile->tempat_lahir = $request->tempat_lahir;
-        $profile->tanggal_lahir = $request->tanggal_lahir;
-        $profile->jenis_kelamin = $request->jenis_kelamin;
-        $profile->agama = $request->agama;
-        $profile->no_telepon = $request->no_telepon;
-        $profile->email = $request->email;
+    // Validate the input data
+    $validatedData = $request->validate([
+        'nama' => 'required',
+        'deskripsi' => 'required',
+        'tempat_lahir' => 'required',
+        'tanggal_lahir' => 'required',
+        'agama' => 'required',
+        'jenis_kelamin' => 'required',
+        'no_telepon' => 'required',
+        'email' => 'required',
+    ], [
+        'nama.required' => 'Nama wajib diisi',
+        'deskripsi.required' => 'Deskripsi wajib diisi',
+        'tempat_lahir.required' => 'Tempat Lahir wajib diisi',
+        'tanggal_lahir.required' => 'Tanggal Lahir wajib diisi',
+        'agama.required' => 'Agama wajib diisi',
+        'jenis_kelamin.required' => 'Jenis Kelamin wajib diisi',
+        'no_telepon.required' => 'Nomor Telepon wajib diisi',
+        'email.required' => 'Email wajib diisi',
+    ]);
 
-        // Simpan perubahan
-        $profile->save();
-
-        // Redirect ke halaman lain atau sesuai kebutuhan
-        return redirect('/Pendidikan');
+    // Check if a new image file is provided
+    if ($request->hasFile('image')) {
+        $image = $request->file('image');
+        $imageName = time() . '.' . $image->getClientOriginalExtension();
+        $image->move(public_path('images'), $imageName);
+        $profile->image_path = 'images/' . $imageName;
     }
+
+    // Update the profile data with the new data
+    $profile->nama = $validatedData['nama'];
+    $profile->deskripsi = $validatedData['deskripsi'];
+    $profile->tempat_lahir = $validatedData['tempat_lahir'];
+    $profile->tanggal_lahir = $validatedData['tanggal_lahir'];
+    $profile->agama = $validatedData['agama'];
+    $profile->jenis_kelamin = $validatedData['jenis_kelamin'];
+    $profile->no_telepon = $validatedData['no_telepon'];
+    $profile->email = $validatedData['email'];
+
+    // Save the updated profile
+    $profile->save();
+
+    // Redirect to a specific route or page, e.g., the profile page
+    return redirect()->route('profil.show', ['id' => $id]);
+}
 
     /**
      * Remove the specified resource from storage.
@@ -159,12 +205,31 @@ class ProfileController extends Controller
     {
         $profile = Profile::findOrFail($id);
 
+        // Periksa dan hapus alamat jika ada
+        if ($profile->alamat) {
+            $profile->alamat->delete();
+        }
+
+        // Periksa dan hapus pendidikan jika ada
+        if ($profile->pendidikan) {
+            $profile->pendidikan->delete();
+        }
+
+        // Periksa dan hapus pekerjaan jika ada
+        if ($profile->pekerjaan) {
+            $profile->pekerjaan->delete();
+        }
+
+        // Periksa dan hapus skill jika ada
+        if ($profile->skill) {
+            $profile->skill->delete();
+        }
+
         // Hapus profil
         $profile->delete();
 
         // Redirect ke halaman lain atau sesuai kebutuhan setelah menghapus profil
-        return redirect('/home'); // Contoh pengalihan ke halaman beranda
+        return redirect()->route('daftar-profile'); // Contoh pengalihan ke halaman beranda
     }
-
     
 }

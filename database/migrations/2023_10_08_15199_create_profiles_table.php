@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('agama');
             $table->string('no_telepon');
             $table->string('email');
+            $table->string('image_path')->nullable();
             $table->timestamps();
 
         });

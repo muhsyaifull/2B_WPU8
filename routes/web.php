@@ -40,6 +40,12 @@ Route::get('/DaftarCV', function () {
 Route::get('/ProfilePage/{id}', [ProfileController::class, 'showProfile'])->name('profil.show');
 Route::resource('cliv',ProfileController::class);
 
+Route::get('/daftar-profile', [ProfileController::class, 'index'])->name('daftar-profile');
+Route::post('/store-profile', [ProfileController::class, 'store'])->name('store-profile');
+Route::delete('/profiles/{id}', [ProfileController::class, 'destroy'])->name('profiles.destroy');
+
+
+
 Route::get('/DataDiri', function () {
     return view('DataDiri');
 })->name('DataDiri');
@@ -48,7 +54,12 @@ Route::get('/DataDiri', function () {
 Route::get('/Pendidikan', [PendidikanController::class, 'index'])->name('pendidikan.index');
 Route::get('/Pendidikan/create', [PendidikanController::class, 'create'])->name('pendidikan.create');
 Route::post('/Pendidikan', [PendidikanController::class, 'store'])->name('pendidikan.store');
-Route::put('/profile/{id}', [ProfileController::class, 'update'])->name('profile.update');
+
+
+
+Route::get('/Edit', function(){
+    return view('EditDataDiri');
+});
 
 
 Route::get('/Pendidikan', function () {
@@ -68,18 +79,24 @@ Route::get('/Organisasi', function () {
 Route::get('/register', function () {
     return view('Register');
 })->name('register-page');
-Route::post('/register', [AuthController::class, 'register']);
+Route::post('/register', [AuthController::class, 'register'])->name('register-valid');
 
 
 Route::get('/Login', function () {
     return view('Login');
 })->name('login-page');
-Route::post('/login', [AuthController::class, 'login']);
+Route::post('/login', [AuthController::class, 'login'])->name('login-valid');
 Route::get('/logout', [AuthController::class, 'logout']);
 
 Route::get('/resume', [ResumeController::class, 'create']);
 Route::post('/resume/store', [ResumeController::class, 'store']);
 
-Route::get('/cv/{id}', [CvController::class, 'show']);
+Route::get('/edit-profile/{id}', [ProfileController::class, 'editProfile'])->name('profile.edit');
+Route::put('/update-profile/{id}', [ProfileController::class, 'update'])->name('profile.update');
 
-Route::put('/profile/{id}', [ProfileController::class, 'update'])->name('profile.update');
+// Route::get('/cv/{id}', [CvController::class, 'show']);
+
+// Route::put('/profile/{id}', [ProfileController::class, 'update'])->name('profile.update');
+// Route::get('/edit-profile/{id}', [ProfileController::class, 'editProfile'])->name('edit-profile');
+// Rute untuk mengupdate profil (implementasinya diperlukan dalam controller)
+// Route::put('/profile/{id}', [ProfileController::class, 'update'])->name('profile.update');
