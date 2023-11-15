@@ -3,6 +3,7 @@
 @section('title', 'Data Diri')
     @php
         $alamat = \DB::table('alamat')->where('user_id', \DB::table('profile')->where('akun_id', auth()->id())->value('id'));
+        $pendidikan = \DB::table('pendidikan')->where('user_id', \DB::table('profile')->where('akun_id', auth()->id())->value('id'));
         $idProfile = \DB::table('profile')->where('akun_id', auth()->id())->value('id') ?: '';
     @endphp
 @section('content')
@@ -42,11 +43,20 @@
                 </ul>
               </div>
             </div>
-            <h3>Pendidikan</h3>
-            <p>
-              Officiis eligendi itaque labore et dolorum mollitia officiis optio vero. Quisquam sunt adipisci omnis et ut. Nulla accusantium dolor incidunt officia tempore. Et eius omnis.
-              Cupiditate ut dicta maxime officiis quidem quia. Sed et consectetur qui quia repellendus itaque neque. Aliquid amet quidem ut quaerat cupiditate. Ab et eum qui repellendus omnis culpa magni laudantium dolores.
-            </p>
+            
+            <h3>Riwayat Pendidikan</h3>
+            <div class="row">
+              <div class="col-lg-6">
+                <ul>
+                  {{-- @dd(\DB::table('pendidikan')->where('user_id', \DB::table('profile')->where('akun_id', auth()->id())->value('id'))->value('jenjang')) --}}
+                  <li><i class="bi bi-chevron-right"></i> <strong>Jenjang:</strong> <span>{{\DB::table('pendidikan')->where('user_id', \DB::table('profile')->where('akun_id', auth()->id())->value('id'))->value('jenjang')}}</span></li>
+                  <li><i class="bi bi-chevron-right"></i> <strong>Nama Instansi:</strong> <span>{{strtolower($pendidikan->value('nama_sekolah'))}} </span></li>
+                  <li><i class="bi bi-chevron-right"></i> <strong>Lokasi:</strong> <span>{{strtolower($pendidikan->value('lokasi'))}} </span></li>
+                  <li><i class="bi bi-chevron-right"></i> <strong>Tanggal Masuk:</strong> <span>{{strtolower($pendidikan->value('tanggal_masuk'))}} </span></li>
+                  <li><i class="bi bi-chevron-right"></i> <strong>Tanggal Lulus:</strong> <span>{{strtolower($pendidikan->value('tanggal_lulus'))}} </span></li>
+                </ul>
+              </div>
+
             <h3>Riwayat Pekerjaan</h3>
             <h5>nama perusahaan</h5>
             <p>Tentang riwayat pekerjaan</p>
