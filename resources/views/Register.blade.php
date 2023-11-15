@@ -17,10 +17,15 @@
           <div class="d-flex justify-content-center">
               <div class="card">
                   <div class="card-body text-center">
-                    <form action="{{ route('register-valid') }}" method="POST">
+                    @if($errors->any())
+                    @foreach($errors->all() as $err)
+                    <p class="alert alert-danger">{{ $err }}</p>
+                    @endforeach
+                    @endif
+                    <form action="{{ route('register.action') }}" method="POST">
                         @csrf
                           <h1>REGISTER</h1>
-                          <div class="username p-form">
+                          {{-- <div class="username p-form">
                             <label for="inputEmail3" class="col-sm-2 col-form-label"></label>
                             <div class="col-sm-10">
                                 <input type="username" class="form-control sz-input" id="inputUsername3" placeholder="Masukkan Username" style="width: 100%;" name="username">
@@ -44,6 +49,22 @@
                             <div class="col-sm-10">
                                 <input type="password" class="form-control sz-input" id="inputPassword3" placeholder="Konfirmasi Password" style="width: 100%;">
                             </div>
+                        </div> --}}
+                        <div class="mb-3">
+                            <label>Name <span class="text-danger">*</span></label>
+                            <input class="form-control" type="text" name="name" />
+                        </div>
+                        <div class="mb-3">
+                            <label>Username <span class="text-danger">*</span></label>
+                            <input class="form-control" type="username" name="username" value="{{ old('username') }}" />
+                        </div>
+                        <div class="mb-3">
+                            <label>Password <span class="text-danger">*</span></label>
+                            <input class="form-control" type="password" name="password" />
+                        </div>
+                        <div class="mb-3">
+                            <label>Password Confirmation<span class="text-danger">*</span></label>
+                            <input class="form-control" type="password" name="password_confirm" />
                         </div>
 
                         <div class="mb-3">

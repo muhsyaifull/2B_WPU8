@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\User;
 use App\Models\Profile;
 use App\Models\Alamat;
 use App\Models\Pendidikan;
@@ -8,18 +9,20 @@ use App\Models\Pekerjaan;
 use App\Models\Skill;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use PDF;
 
 class ProfileController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function editProfile($id)
     {
         $profile = Profile::findOrFail($id);
         // Anda dapat menambahkan validasi atau logika tambahan di sini sesuai kebutuhan
-
-        return view('/EditDataDiri', compact('profile'));
+        $alamat = Alamat::where('user_id', $id)->first();
+        $pendidikan = Pendidikan::where('user_id', $id)->first();
+        $pekerjaan = Pekerjaan::where('user_id', $id)->first(); // Load Alamat based on user's Profile ID
+        $skill = Skill::where('user_id', $id)->first();
+        return view('editProfilePage', compact('profile', 'alamat', 'pendidikan', 'pekerjaan', 'skill'));
     }
 
     public function showProfile($id)
@@ -30,6 +33,7 @@ class ProfileController extends Controller
         // } else {
         //     return redirect()->route('login-page');
         // }
+        $id = 1;
         $profile = Profile::findOrFail($id);
         // return view('profile_page', compact('profile'));
         $alamat = Alamat::where('user_id', $id)->first();
@@ -38,6 +42,16 @@ class ProfileController extends Controller
         $skill = Skill::where('user_id', $id)->first();
 
         return view('profile_page', compact('profile', 'alamat', 'pekerjaan', 'pendidikan', 'skill'));
+        // $data = compact('profile', 'alamat', 'pekerjaan', 'pendidikan', 'skill');
+
+    // Uncomment the following line if you want to generate a PDF and view it in the browser.
+    // return view('profile_page', $data);
+
+    // Generate the PDF from the 'profile_page' view and show it in the browser
+        // $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadview('profile_page', $data);
+        // return $pdf->stream('profile.pdf');
+        // $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadview('ShowCv',['resume'=>$resume]);
+    	// return $pdf->stream();
     }
 
     public function index()
@@ -46,12 +60,11 @@ class ProfileController extends Controller
         return view('HalamanDaftarCV', compact('profiles'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+
     public function create()
     {
-        return view('DataDiri');
+        $profile = new Profile();
+        return view('DataDiri', compact('profile'));
     }
 
     /**
@@ -59,7 +72,7 @@ class ProfileController extends Controller
      */
     public function store(Request $request)
     {
-       
+   
         // Validasi data masukan
         $validatedData = $request->validate([
             'nama' => 'required',
@@ -81,15 +94,31 @@ class ProfileController extends Controller
             'email.required' => 'masukin bro',
         ]);
         // dd($validatedData);
-        if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $imageName = time() . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path('images'), $imageName);
-            $validatedData['image_path'] = 'images/' . $imageName; // Save the image path in the database
-            // You should save $imageName to the database under an appropriate column (e.g., 'image_path')
-        }
-        // Simpan data baru ke dalam database
-        $profile = Profile::create($validatedData);
+        // if ($request->hasFile('image')) {
+        //     $image = $request->file('image');
+        //     $imageName = time() . '.' . $image->getClientOriginalExtension();
+        //     $image->move(public_path('images'), $imageName);
+        //     $validatedData['image_path'] = 'images/' . $imageName; // Save the image path in the database
+        //     // You should save $imageName to the database under an appropriate column (e.g., 'image_path')
+        // }
+
+        $akun_id = auth()->id();
+        $validatedData['akun_id'] = $akun_id;
+        // // dd($akun_id);
+        // // dd(auth()->user());
+        // dd($validatedData);
+        // Create a new profile with the updated validated data
+        $profile = Profile::create([
+            'nama' => $validatedData['nama'],
+            'deskripsi' => $validatedData['deskripsi'],
+            'tempat_lahir' => $validatedData['tempat_lahir'],
+            'tanggal_lahir' => $validatedData['tanggal_lahir'],
+            'jenis_kelamin' => $validatedData['jenis_kelamin'],
+            'agama' => $validatedData['agama'],
+            'no_telepon' => $validatedData['no_telepon'],
+            'email' => $validatedData['email'],
+            'akun_id' => $akun_id,
+        ]);
 
         // Simpan data alamat terlebih dahulu
         $alamatData = [
@@ -104,99 +133,48 @@ class ProfileController extends Controller
         // dd($alamatData);
         
         Alamat::create($alamatData);
-
-        // $profile = Profile::findOrFail($id); // Mendapatkan profil berdasarkan ID
-    
-        $pendidikanData = [
-            'user_id' => $profile->id,
-            'jenjang' => $request->jenjang,
-            'nama_sekolah' => $request->nama_sekolah,
-            'lokasi' => $request->lokasi,
-            'tanggal_masuk' => $request->tanggal_mulai,
-            'tanggal_lulus' => $request->tanggal_lulus,
-        ];
-    
-        Pendidikan::create($pendidikanData);
-
-        $pekerjaanData = [
-            'user_id' => $profile->id,
-            'nama_perusahaan' => $request->nama_perusahaan,
-            'posisi' => $request->posisi,
-            'lokasi' => $request->lokasi,
-            'tanggal_masuk_kerja' => $request->tanggal_mulai_kerja,
-            'tanggal_keluar_kerja' => $request->tanggal_keluar_kerja,
-        ];
-        // dd($pekerjaanData);
-    
-        Pekerjaan::create($pekerjaanData);
-
-        $skillData = [
-            'user_id' => $profile->id,
-            'nama_skill' => $request->nama_skill,
-            'deskripsi_skill' => $request->deskripsi_skill,
-        ];
-        // dd($skillData);
-
-        Skill::create($skillData);
     
         // Redirect ke halaman lain atau sesuai kebutuhan
-        return redirect()->route('daftar-profile');
+        return redirect()->route('dashboard');
 
     }
     
         /**
      * Update the specified resource in storage.
      */
+
+     
     public function update(Request $request, $id)
-{
-    // Find the profile you want to update
-    $profile = Profile::findOrFail($id);
+    {
+        // Validasi data masukan
+        $request->validate([
+            'nama' => 'required',
+            'deskripsi' => 'required',
+            'tempat_lahir' => 'required',
+            'tanggal_lahir' => 'required',
+            'agama' => 'required',
+            'jenis_kelamin' => 'required',
+            'no_telepon' => 'required',
+            'email' => 'required',
+          ]);
+          $profile = Profile::find($id);
+          $profile->update($request->all());
 
-    // Validate the input data
-    $validatedData = $request->validate([
-        'nama' => 'required',
-        'deskripsi' => 'required',
-        'tempat_lahir' => 'required',
-        'tanggal_lahir' => 'required',
-        'agama' => 'required',
-        'jenis_kelamin' => 'required',
-        'no_telepon' => 'required',
-        'email' => 'required',
-    ], [
-        'nama.required' => 'Nama wajib diisi',
-        'deskripsi.required' => 'Deskripsi wajib diisi',
-        'tempat_lahir.required' => 'Tempat Lahir wajib diisi',
-        'tanggal_lahir.required' => 'Tanggal Lahir wajib diisi',
-        'agama.required' => 'Agama wajib diisi',
-        'jenis_kelamin.required' => 'Jenis Kelamin wajib diisi',
-        'no_telepon.required' => 'Nomor Telepon wajib diisi',
-        'email.required' => 'Email wajib diisi',
-    ]);
+        $request->validate([
+            'provinsi' => 'required',
+            'kota' => 'required',
+            'kecamatan' => 'required',
+            'kelurahan' => 'required',
+            'dusun' => 'required',
+            'poscode' => 'required',
+        ]);
+    
+        $alamat = Alamat::where('user_id', $id)->first();
+        $alamat->update($request->all());
 
-    // Check if a new image file is provided
-    if ($request->hasFile('image')) {
-        $image = $request->file('image');
-        $imageName = time() . '.' . $image->getClientOriginalExtension();
-        $image->move(public_path('images'), $imageName);
-        $profile->image_path = 'images/' . $imageName;
+        return redirect()->route('dashboard');
     }
-
-    // Update the profile data with the new data
-    $profile->nama = $validatedData['nama'];
-    $profile->deskripsi = $validatedData['deskripsi'];
-    $profile->tempat_lahir = $validatedData['tempat_lahir'];
-    $profile->tanggal_lahir = $validatedData['tanggal_lahir'];
-    $profile->agama = $validatedData['agama'];
-    $profile->jenis_kelamin = $validatedData['jenis_kelamin'];
-    $profile->no_telepon = $validatedData['no_telepon'];
-    $profile->email = $validatedData['email'];
-
-    // Save the updated profile
-    $profile->save();
-
-    // Redirect to a specific route or page, e.g., the profile page
-    return redirect()->route('profil.show', ['id' => $id]);
-}
+    
 
     /**
      * Remove the specified resource from storage.

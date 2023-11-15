@@ -3,32 +3,32 @@
 <div class="container">
   <div class="header">
     <div class="full-name">
-      <span class="name" name="name">{{$resume->name}}</span>
+      <span class="name" name="name">{{$profile->nama}}</span>
     </div>
     <div class="contact-info">
       <span class="email">Email: </span>
-      <span class="email-val" name="email">{{$resume->email}}</span>
+      <span class="email-val" name="email">{{$profile->email}}</span>
       <span class="separator"></span>
       <span class="phone">Phone: </span>
-      <span class="phone-val" name="no_telepon">{{$resume->no_telepon}}</span>
+      <span class="phone-val" name="no_telepon">{{$profile->no_telepon}}</span>
     </div>
       
     <div class="about">
       <span class="position">Description: </span>
       <span class="desc">
-        {{$resume->description}}
+        {{$profile->description}}
       </span>
     </div>
   </div>
    <div class="details">
     <div class="section">
-      <div class="section__title">Experience</div>
+      <div class="section__title">Experience Work</div>
       <div class="section__list">
         <div class="section__list-item">
           <div class="left">
-            <div class="education" name="experience">{{$resume->experience}}</div>
-            {{-- <div class="addr">San Fr, CA</div>
-            <div class="duration">Jan 2011 - Feb 2015</div> --}}
+            <div class="education" name="nama_perusahaan">{{$pekerjaan->nama_perusahaan}}</div>
+            <div class="addr">{{$pekerjaan->posisi}}</div>
+            <div class="duration">Jan 2011 - Feb 2015</div>
           </div>
       </div>
     </div>
@@ -37,7 +37,7 @@
       <div class="section__list">
         <div class="section__list-item">
           <div class="left">
-            <div class="name" name="education">{{$resume->education}}</div>
+            {{-- <div class="name" name="education">{{$resume->education}}</div> --}}
             {{-- <div class="addr">San Fr, CA</div>
             <div class="duration">Jan 2011 - Feb 2015</div> --}}
           </div>
@@ -65,7 +65,7 @@
        <div class="skills">
          <div class="skills__item">
            <div class="left"><div class="name" name="skill">
-            {{$resume->skill}}
+            {{-- {{$resume->skill}} --}}
              </div></div>
            {{-- <div class="right">
                           <input  id="ck1" type="checkbox" checked/>

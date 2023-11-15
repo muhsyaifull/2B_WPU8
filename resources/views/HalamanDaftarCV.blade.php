@@ -33,7 +33,7 @@
                                 <form method="POST" action="{{ route('profiles.destroy', $profile->id) }}">
                                     @csrf
                                     @method('DELETE')
-                                    <button class="btn btn-danger btn-width2 mb-2">Hapus</button>
+                                    <button class="btn btn-danger btn-width2 mb-2" onclick="return confirm('Apakah Anda yakin ingin menghapus?')">Hapus</button>
                                 </form>
                             </div>
                         </div>

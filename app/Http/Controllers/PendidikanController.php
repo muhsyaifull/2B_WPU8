@@ -1,69 +1,85 @@
 <?php
 
-namespace App\Http\Controllers;
+    namespace App\Http\Controllers;
 
-use App\Models\Profile;
-use App\Models\Alamat;
-use App\Models\Pendidikan;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
-
-
-class PendidikanController extends Controller
-{
-    public function editProfile($id)
-    {
-        $profile = Profile::findOrFail($id);
-        return view('datadiri', compact('profile'));
-    }
-
-    public function showProfile($id)
-    {
-        // if (Session::get('profile_id')){
-        //     $profile = Profile::findOrFail(Session::get('profile_id'));
-        //     return view('profile_page', compact('profile'));
-        // } else {
-        //     return redirect()->route('login-page');
-        // }
-        $profile = Profile::findOrFail($id);
-        return view('profile_page', compact('profile'));
-    }
-
-    public function index()
-    {
-        return view('Home');
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        return view('RiwayatPendidikan');
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request, $id)
-    {
-       
-        $profile = Profile::findOrFail($id); // Mendapatkan profil berdasarkan ID
+    use App\Models\Profile;
+    use App\Models\Pendidikan;
+    use Illuminate\Support\Facades\Session;
+    use Illuminate\Http\Request;
+    use Illuminate\Support\Facades\Validator;
     
-        $pendidikanData = [
-            'user_id' => $profile->id,
-            'jenjang' => $request->jenjang,
-            'nama_sekolah' => $request->nama_sekolah,
-            'lokasi' => $request->lokasi,
-            'tanggal_masuk' => $request->tanggal_masuk,
-            'tanggal_lulus' => $request->tanggal_lulus,
-        ];
-        // dd($pendidikanData);
-    
-        Pendidikan::create($pendidikanData);
-    
-        // Redirect ke halaman lain atau sesuai kebutuhan
-        return redirect('/Organisasi');
+
+    class PendidikanController extends Controller
+    {
+        public function index() 
+        {
+            return view("RiwayatPendidikan");
+        }
+        public function store(Request $request)
+    {
+        $request->validate([
+            'moreFields.*.nama_sekolah' => 'required',
+            'moreFields.*.jenjang' => 'required',
+            'moreFields.*.lokasi' => 'required',
+            'moreFields.*.tanggal_masuk' => 'required',
+            'moreFields.*.tanggal_lulus' => 'required',
+        ]);
+
+        foreach ($request->moreFields as $key => $value) {
+            // dd($value); // Add this line to dump and die
+            // dd([
+            //     'user_id' => \DB::table('profile')->where('akun_id', auth()->id())->value('id'),
+            //     'nama_sekolah' => $value['nama_sekolah'],
+            //     'jenjang' => $value['jenjang'],
+            //     'lokasi' => $value['lokasi'],
+            //     'tanggal_masuk' => $value['tanggal_masuk'],
+            //     'tanggal_lulus' => $value['tanggal_lulus'],
+            // ]);
+            Pendidikan::create([
+                'user_id' => \DB::table('profile')->where('akun_id', auth()->id())->value('id'),
+                'nama_sekolah' => $value['nama_sekolah'],
+                'jenjang' => $value['jenjang'],
+                'lokasi' => $value['lokasi'],
+                'tanggal_masuk' => $value['tanggal_masuk'],
+                'tanggal_lulus' => $value['tanggal_lulus'],
+            ]);
+        }
+
+        return redirect()->route('dashboard')->with('success', 'Data has been stored successfully.');
     }
 
-}
+        public function view()
+        {
+            // Retrieve or create a profile instance
+            $profile = Profile::firstOrNew(['user_id' => auth()->user()->id]);
+
+            return view('your.view.name', compact('profile'));
+        }
+
+        public function update(Request $request, $id)
+        {
+            $request->validate([
+                'jenjang' => 'required',
+                'nama_sekolah' => 'required',
+                'lokasi' => 'required',
+                'tanggal_masuk' => 'required',
+                'tanggal_lulus' => 'required',
+            ]);
+
+            $pendidikan = Pendidikan::where('user_id', $id)->first();
+            $pendidikan->update($request->all());
+
+            return redirect()->route('daftar-profile');
+        }
+
+        public function destroy($id)
+        {
+            $pendidikan = Pendidikan::find($id);
+            
+            if ($pendidikan) {
+                $pendidikan->delete();
+            }
+
+            return redirect()->route('daftar-profile');
+        }
+    }

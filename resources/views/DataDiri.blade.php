@@ -9,17 +9,11 @@
     <link rel="stylesheet" href="assets/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="assets/bootstrap/bootstrap-icons">
-
-    <style>
-        hr {
-            border: 3px solid rgb(111, 111, 126);
-        }
-    </style>
   </head>
 <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">   
+            <a class="navbar-brand" href="#">
                 <img src="assets/img/Logo.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
                 CLIV
             </a>
@@ -173,71 +167,61 @@
               </div>
             </div>
             
-            <hr class="mt-5">
-
             {{-- pedidikan --}}
-            <div id="riwayat-pendidikan-container">
-                <!-- Formulir Riwayat Pendidikan Awal -->
-                <div class="riwayat-pendidikan">
-                  <div class="row g-3 align-items-center mb-3">
-                    <h2 class="text-center" style="margin-top: 50px;">Riwayat Pendidikan</h2>
-                    <div class="col-md-3">
-                      <label class="form-label">Jenjang</label>
-                    </div>
-                    <div class="col-md-6">
-                      <select class="form-select" name="jenjang" aria-label="Jenjang">
+            <div class="row g-3 align-items-center mb-3">
+                <h2 class="text-center" style="margin-top: 50px;" >Riwayat Pendidikan</h2>
+                <div class="col-md-3">
+                    <label class="form-label">Jenjang</label>
+                </div>
+                <div class="col-md-6">
+                    <select class="form-select" name="jenjang" aria-label="Jenjang">
                         <option selected></option>
                         <option value="SD">SD</option>
                         <option value="SMP">SMP</option>
                         <option value="SMA/SMK">SMA/SMK</option>
-                      </select>
-                    </div>
-                  </div>
-              
-                  <div class="row g-3 align-items-center mb-3">
-                    <div class="col-md-3">
-                      <label for="inputNama" class="form-label">Nama Sekolah</label>
-                    </div>
-                    <div class="col-md-6">
-                      <input type="text" id="nama_sekolah" name="nama_sekolah" aria-label="Nama_sekolah" class="form-control">
-                    </div>
-                  </div>
-              
-                  <div class="row g-3 align-items-center mb-3">
-                    <div class="col-md-3">
-                      <label for="inputNama" class="form-label">Lokasi</label>
-                    </div>
-                    <div class="col-md-6">
-                      <input type="text" id="lokasi" name="lokasi" aria-label="Lokasi" class="form-control">
-                    </div>
-                  </div>
-              
-                  <div class="row g-3 align-items-center mb-3">
-                    <div class="col-md-3 col-sm-12">
-                      <label for="inputTanggalMulai" class="form-label">Waktu</label>
-                    </div>
-                    <div class="col-md-3">
-                      <p>Tanggal Masuk</p>
-                      <input type="date" id="inputTanggalMasuk" name="tanggal_mulai" class="form-control">
-                    </div>
-                    <div class="col-md-3">
-                      <p>Tanggal Lulus</p>
-                      <input type="date" id="inputTanggalLulus" name="tanggal_lulus" class="form-control">
-                    </div>
-                  </div>
+                    </select>
                 </div>
-                <!-- Akhir Formulir Riwayat Pendidikan -->
-              
-                {{-- <div class="mb-4" style="margin-top: 20px;"></div>
-                <div class="row">
-                  <div class="col-md-3"></div>
-                  <div class="col-md-6 d-flex justify-content-center align-items-center mb-3">
-                    <button type="button" id="tambahRiwayat" class="btn btn-primary custom-btn">Tambah Riwayat Pendidikan +</button>
-                  </div>
-                </div>
-              </div>  --}}
+            </div>
 
-            <hr class="mt-5">
+            <div class="row g-3 align-items-center mb-3">
+                <div class="col-md-3">
+                    <label for="inputNama" class="form-label">Nama Sekolah</label>
+                </div>
+                <div class="col-md-6">
+                    <input type="text" id="nama_sekolah" name="nama_sekolah" aria-label="Nama_sekolah" class="form-control">
+                </div>
+            </div>
+
+            <div class="row g-3 align-items-center mb-3">
+                <div class="col-md-3">
+                    <label for="inputNama" class="form-label">Lokasi</label>
+                </div>
+                <div class="col-md-6">
+                    <input type="text" id="lokasi" name="lokasi" aria-label="Lokasi" class="form-control">
+                </div>
+            </div>
+
+            <div class="row g-3 align-items-center mb-3">
+                <div class="col-md-3 col-sm-12">
+                    <label for="inputTanggalMulai" class="form-label">Waktu</label>
+                </div>
+                <div class="col-md-3 ">
+                    <p>Tanggal Masuk</p>
+                    <input type="date" id="inputTanggalMasuk" name="tanggal_mulai" class="form-control">
+                </div>
+                <div class="col-md-3">
+                    <p>Tanggal Lulus</p>
+                    <input type="date" id="inputTanggalLulus" name="tanggal_lulus" class="form-control" >
+                </div>
+            </div>  
+
+            <div class="mb-4" style="margin-top: 20px;"></div>
+            {{-- <div class="row ">
+                <div class="col-md-3"></div>
+                <div class="col-md-6 d-flex justify-content-center align-items-center mb-3">
+                    <button type="submit" class="btn btn-primary custom-btn">Tambah Riwayat Pendidikan + </button>
+                </div>
+            </div> --}}
 
             {{-- riwayat pekerjaan --}}
             
@@ -290,8 +274,6 @@
                     <button type="submit" class="btn btn-primary custom-btn">Tambah Riwayat Pekerjaan + </button>
                 </div>
             </div> --}}
-
-            <hr class="mt-5">
 
             <div class="row g-3 align-items-center mb-3">
                 <h2 class="text-center" style="margin-top: 50px;" >Skill</h2>
@@ -394,44 +376,6 @@
                 </div> 
 
         </form>
-
-            {{-- <script>
-                // Fungsi untuk menambahkan formulir riwayat pendidikan baru
-                document.getElementById("tambahRiwayat").addEventListener("click", function () {
-                const riwayatPendidikanContainer = document.getElementById("riwayat-pendidikan-container");
-                const newRiwayatPendidikan = document.querySelector(".riwayat-pendidikan").cloneNode(true);
-                riwayatPendidikanContainer.insertBefore(newRiwayatPendidikan, riwayatPendidikanContainer.lastElementChild);
-                });
-            </script> --}}
-
-            <script>
-                // Inisialisasi array untuk menyimpan data riwayat pendidikan
-                const riwayatPendidikanArray = [];
-              
-                // Fungsi untuk menambahkan formulir riwayat pendidikan baru
-                document.getElementById("tambahRiwayat").addEventListener("click", function () {
-                  const riwayatPendidikanContainer = document.getElementById("riwayat-pendidikan-container");
-                  const newRiwayatPendidikan = document.querySelector(".riwayat-pendidikan").cloneNode(true);
-                  riwayatPendidikanContainer.insertBefore(newRiwayatPendidikan, riwayatPendidikanContainer.lastElementChild);
-              
-                  // Dapatkan data dari formulir yang baru ditambahkan
-                  const newRiwayatPendidikanData = {
-                    // Ganti ini dengan cara Anda mendapatkan data dari formulir, misalnya:
-                    institusi: newRiwayatPendidikan.querySelector(".institusi-input").value,
-                    jenjang: newRiwayatPendidikan.querySelector(".jenjang-input").value,
-                    tahunLulus: newRiwayatPendidikan.querySelector(".tahun-lulus-input").value,
-                  };
-              
-                  // Tambahkan data baru ke dalam array
-                  riwayatPendidikanArray.push(newRiwayatPendidikanData);
-              
-                  // Anda bisa melakukan apa pun yang Anda inginkan dengan data ini, seperti menyimpannya atau menampilkan di halaman
-                  console.log("Data Riwayat Pendidikan Baru:", newRiwayatPendidikanData);
-                  console.log("Seluruh Data Riwayat Pendidikan:", riwayatPendidikanArray);
-                });
-              </script>
-              
-
             <div class="mb-4" style="margin-top: 80px;"></div>
                 <div class="row justify-content-center align-items-center">
                     <div class="col-md-5 text-center mb-3">

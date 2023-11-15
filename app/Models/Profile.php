@@ -9,7 +9,12 @@ class Profile extends Model
 {
     use HasFactory;
     protected $table = 'profile';
-    protected $fillable = ['nama', 'deskripsi', 'tempat_lahir', 'tanggal_lahir', 'jenis_kelamin', 'agama', 'no_telepon', 'email', 'image_path'];
+    protected $fillable = ['nama', 'deskripsi', 'tempat_lahir', 'tanggal_lahir', 'jenis_kelamin', 'agama', 'no_telepon', 'email', 'image_path', 'akun_id'];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'akun_id');
+    }
 
     public function alamat()
     {

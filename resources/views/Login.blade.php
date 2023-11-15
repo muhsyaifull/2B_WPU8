@@ -15,24 +15,41 @@
         <div class="d-flex justify-content-center">
             <div class="card">
                 <div class="card-body text-center">
-                    <form action="{{ route('login-valid') }}" method="POST">
+                    @if(session('success'))
+                    <p class="alert alert-success">{{ session('success') }}</p>
+                    @endif
+                    @if($errors->any())
+                    @foreach($errors->all() as $err)
+                    <p class="alert alert-danger">{{ $err }}</p>
+                    @endforeach
+                    @endif
+                    <form action="{{ route('login.action') }}" method="POST">
                         @csrf
                         <h1>LOGIN</h1>
-                        <div class="username p-form">
+                        {{-- <div class="username p-form">
                             <label for="inputEmail3" class="col-sm-2 col-form-label"></label>
                             <div class="col-sm-10">
                                 <input type="email" class="form-control sz-input" id="inputEmail3" placeholder="Masukkan Email" style="width: 100%;" name="email">
                             </div>
                         </div>
-                            <div class="password mt-3 mb-3 p-form">
-                                <div class="col-sm-10">
-                                    <input type="password" class="form-control sz-input" id="inputPassword3" placeholder="Masukkan Password" style="width: 100%;" name="password">
-                                </div>
+                        <div class="password mt-3 mb-3 p-form">
+                            <div class="col-sm-10">
+                                <input type="password" class="form-control sz-input" id="inputPassword3" placeholder="Masukkan Password" style="width: 100%;" name="password">
                             </div>
+                        </div> --}}
 
-                            <div class="mb-3">
-                                <button type="submit" class="btn btn-primary mt-4">Log In</button>
-                            </div>
+                        <div class="mb-3">
+                            <label>Username <span class="text-danger">*</span></label>
+                            <input class="form-control" type="username" name="username" value="{{ old('username') }}" />
+                        </div>
+                        <div class="mb-3">
+                            <label>Password <span class="text-danger">*</span></label>
+                            <input class="form-control" type="password" name="password" />
+                        </div>
+                        
+                        <div class="mb-3">
+                            <button type="submit" class="btn btn-primary mt-4">Log In</button>
+                        </div>
 
                         <div class="register-link">
                             <p> Belum punya akun? <a

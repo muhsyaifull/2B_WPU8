@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="bootstrap/bootstrap-icons">
   </head>
   <body>
+    {{-- navbar head --}}
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
           <a class="navbar-brand" href="#"><img src="assets/img/Logo.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
@@ -32,20 +33,19 @@
             </ul>
             <ul class="navbar-nav ms-auto">
           </div>
+          @auth
+          <p>Welcome <b>{{ Auth::user()->name }}</b></p>
+          <a class="btn btn-primary" href="{{ route('password') }}">Change Password</a>
+          <a class="btn btn-danger" href="{{ route('logout') }}">Logout</a>
+          @endauth
           @guest
-            <a href="{{ route('login-page') }}" class="btn btn-outline-secondary">Login</a>
-            <a href="{{ route('register-page') }}" class="btn btn-primary ms-3" role="button">Sign Up</a>
-            {{-- <h1 class="font-jumbotron pt-5 pb-5 pe-5 ps-5">{{ Auth::user()->username }}</h1> --}}
-            @if (Auth::check())
-              <a href="{{ route('profile.show', ['id' => Auth::user()->id]) }}" cslass="nav-link active">{{ Auth::user()->username }}</a>
-            @endif
-           @else
-            <a href="{{ route('profile.show', ['id' => Auth::user()->id]) }}" class="nav-link active">{{ Auth::user()->username }}</a>
-            <a href="{{ route('logout') }}" class="btn btn-outline-secondary ms-5">Logout</a>
+          <a class="btn btn-primary" href="{{ route('login') }}">Login</a>
+          <a class="btn btn-info" href="{{ route('register') }}">Register</a>
           @endguest
         </div>
       </nav>
 
+      {{-- field --}}
       <div class="container-fluid bg-con">
         <div class="row">
             <div class="col-md-3">

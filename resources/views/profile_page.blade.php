@@ -42,13 +42,13 @@
             </ul>
             <ul class="navbar-nav ms-auto">
           </div>
-          {{-- @guest
+          @guest
           <a href="{{ route('login-page') }}" class="btn btn-outline-secondary">Login</a>
           <a href="{{ route('register-page') }}" class="btn btn-primary ms-3" role="button">SignUp </a>
           @else
           <a href="{{ route('logout') }}" class="btn btn-outline-secondary">Logout</a>
           @endguest
-        </div> --}}
+        </div>
     </nav>
 
     {{-- Info profile --}}

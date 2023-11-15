@@ -17,7 +17,7 @@
                 </form>
             </li>
             <li class="nav-item">
-                <a href="{{ route('DaftarCV') }}" class="btn btn-primary ms-3 btn-width3" role="button">CV</a>
+                {{-- <a href="{{ route('DaftarCV') }}" class="btn btn-primary ms-3 btn-width3" role="button">CV</a> --}}
                 <a href="{{ route('DataDiri') }}" class="btn btn-primary ms-3 btn-width5" role="button">Create Data</a>
             </li>
         </ul>
