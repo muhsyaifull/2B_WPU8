@@ -69,7 +69,7 @@ Route::post('/skill/store', [SkillController::class, 'store']);
 Route::post('/skill/saveData', [SkillController::class, 'saveData'])->name('skill.saveData');
 
 Route::get('/f', function () {
-    return view('TemplateCV');
+    return view('TemplateCV1');
 })->name('dashboard');
 // -------------------------------------------------
 
