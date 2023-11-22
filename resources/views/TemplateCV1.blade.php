@@ -4,6 +4,8 @@
     @php
         $alamat = \DB::table('alamat')->where('user_id', \DB::table('profile')->where('akun_id', auth()->id())->value('id'));
         $pendidikan = \DB::table('pendidikan')->where('user_id', \DB::table('profile')->where('akun_id', auth()->id())->value('id'));
+        $pekerjaan = \DB::table('pekerjaan')->where('user_id', \DB::table('profile')->where('akun_id', auth()->id())->value('id'));
+        $skill = \DB::table('skill')->where('user_id', \DB::table('profile')->where('akun_id', auth()->id())->value('id'));
         $idProfile = \DB::table('profile')->where('akun_id', auth()->id())->value('id') ?: '';
     @endphp
 @section('content')
@@ -69,16 +71,31 @@
                 {{-- RIWAYAT PEKERJAAN --}}
                 <div class="riwayat-pekerjaan mt-4">
                   <h3 class="bg-subtitlecv font-subjudul">Riwayat Pekerjaan</h3>
-                  <h5>nama perusahaan</h5>
-                  <p>Tentang riwayat pekerjaan</p>
+                  <div class="row">
+                  <div class="col-lg-6">
+                    <ul>
+                      {{-- @dd(\DB::table('pekerjaan')->where('user_id', \DB::table('profile')->where('akun_id', auth()->id())->value('id'))->value('nama_perusahaan')) --}}
+                      <li><i class="bi bi-chevron-right"></i> <strong>Nama Perusahaan:</strong> <span>{{\DB::table('pekerjaan')->where('user_id', \DB::table('profile')->where('akun_id', auth()->id())->value('id'))->value('nama_perusahaan')}}</span></li>
+                      <li><i class="bi bi-chevron-right"></i> <strong>Nama Posisi:</strong> <span>{{strtolower($pekerjaan->value('posisi'))}} </span></li>
+                      <li><i class="bi bi-chevron-right"></i> <strong>Lokasi:</strong> <span>{{strtolower($pekerjaan->value('lokasi'))}} </span></li>
+                      <li><i class="bi bi-chevron-right"></i> <strong>Tanggal Masuk:</strong> <span>{{strtolower($pekerjaan->value('tanggal_masuk_kerja'))}} </span></li>
+                      <li><i class="bi bi-chevron-right"></i> <strong>Tanggal Lulus:</strong> <span>{{strtolower($pekerjaan->value('tanggal_keluar_kerja'))}} </span></li>
+                    </ul>
+                  </div>
                 </div>
                 {{-- AKHIR RIWAYAT PEKERJAAN --}}
     
                 {{-- SKILL --}}
                 <div class="skill mt-4">
                   <h3 class="bg-subtitlecv font-subjudul">Skill</h3>
-                  <h5>nama skill</h5>
-                  <p>deskripsi skill</p>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <ul>
+                        {{-- @dd(\DB::table('pekerjaan')->where('user_id', \DB::table('profile')->where('akun_id', auth()->id())->value('id'))->value('nama_perusahaan')) --}}
+                        <li><i class="bi bi-chevron-right"></i> <strong>Nama Skill:</strong> <span>{{\DB::table('skill')->where('user_id', \DB::table('profile')->where('akun_id', auth()->id())->value('id'))->value('nama_skill')}}</span></li>
+                        <li><i class="bi bi-chevron-right"></i> <strong>Deskripsi:</strong> <span>{{strtolower($skill->value('deskripsi_skill'))}} </span></li>
+                      </ul>
+                    </div>
                 </div>
                 {{-- AKHIR SKILL --}}
 

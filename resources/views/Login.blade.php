@@ -53,7 +53,7 @@
 
                         <div class="register-link">
                             <p> Belum punya akun? <a
-                                href="#">Register</a> </p>
+                                href="/z">Register</a> </p>
                         </div>
 
                     </form>

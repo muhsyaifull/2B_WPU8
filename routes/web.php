@@ -40,6 +40,9 @@ Route::get('/e', function () {
     return view('HomeUser');
 })->name('dashboard');
 
+Route::get('/z', function () {
+    return view('register');
+});
 
 Route::get('/a', function () {
     return view('FieldProfile');
