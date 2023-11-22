@@ -56,7 +56,7 @@
 
 .card-body{
     gap: 10px;
-    width: 250px;
+    width: 20rem;
     padding-left: 8px;
     margin: auto;
 }
@@ -572,4 +572,9 @@ html {
 .bold{
   font-weight: bolder;
   font-size: large;
+}
+
+.bold-lgn{
+  font-weight: bolder;
+  font-size: 2.5rem;
 }

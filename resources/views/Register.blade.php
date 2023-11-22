@@ -14,7 +14,7 @@
   <body>
     <body>
       <div class="bodyLogin">
-          <div class="d-flex justify-content-center">
+        <div class="position-absolute top-50 start-50 translate-middle">
               <div class="card">
                   <div class="card-body text-center">
                     @if($errors->any())
@@ -24,7 +24,7 @@
                     @endif
                     <form action="{{ route('register.action') }}" method="POST">
                         @csrf
-                          <h1>REGISTER</h1>
+                          <h1 class="bold-lgn mt-5 me-3 ms-3">REGISTER</h1>
                           {{-- <div class="username p-form">
                             <label for="inputEmail3" class="col-sm-2 col-form-label"></label>
                             <div class="col-sm-10">
@@ -50,19 +50,19 @@
                                 <input type="password" class="form-control sz-input" id="inputPassword3" placeholder="Konfirmasi Password" style="width: 100%;">
                             </div>
                         </div> --}}
-                        <div class="mb-3">
+                        <div class="mb-3 ms-5 me-5">
                             <label>Name <span class="text-danger">*</span></label>
                             <input class="form-control" type="text" name="name" />
                         </div>
-                        <div class="mb-3">
+                        <div class="mb-3 ms-5 me-5">
                             <label>Username <span class="text-danger">*</span></label>
                             <input class="form-control" type="username" name="username" value="{{ old('username') }}" />
                         </div>
-                        <div class="mb-3">
+                        <div class="mb-3 ms-5 me-5">
                             <label>Password <span class="text-danger">*</span></label>
                             <input class="form-control" type="password" name="password" />
                         </div>
-                        <div class="mb-3">
+                        <div class="mb-3 ms-5 me-5">
                             <label>Password Confirmation<span class="text-danger">*</span></label>
                             <input class="form-control" type="password" name="password_confirm" />
                         </div>

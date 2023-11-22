@@ -12,7 +12,7 @@
   </head>
   <body>
     <div class="bodyLogin">
-        <div class="d-flex justify-content-center">
+        <div class="position-absolute top-50 start-50 translate-middle">
             <div class="card">
                 <div class="card-body text-center">
                     @if(session('success'))
@@ -25,7 +25,7 @@
                     @endif
                     <form action="{{ route('login.action') }}" method="POST">
                         @csrf
-                        <h1>LOGIN</h1>
+                        <h1 class="bold-lgn mt-5 me-3 ms-3">LOGIN</h1>
                         {{-- <div class="username p-form">
                             <label for="inputEmail3" class="col-sm-2 col-form-label"></label>
                             <div class="col-sm-10">
@@ -38,11 +38,11 @@
                             </div>
                         </div> --}}
 
-                        <div class="mb-3">
+                        <div class="mb-3 ms-5 me-5">
                             <label>Username <span class="text-danger">*</span></label>
                             <input class="form-control" type="username" name="username" value="{{ old('username') }}" />
                         </div>
-                        <div class="mb-3">
+                        <div class="mb-3 ms-5 me-5">
                             <label>Password <span class="text-danger">*</span></label>
                             <input class="form-control" type="password" name="password" />
                         </div>
@@ -55,10 +55,12 @@
                             <p> Belum punya akun? <a
                                 href="#">Register</a> </p>
                         </div>
+
                     </form>
                 </div>
             </div>
         </div>
+
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     </div>    
   </body>
