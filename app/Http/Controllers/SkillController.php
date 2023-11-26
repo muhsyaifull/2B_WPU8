@@ -8,63 +8,61 @@ use Illuminate\Http\Request;
 
 class SkillController extends Controller
 {
-        public function index() 
-        {
-            return view("RiwayatPendidikan");
-        }
-        public function store(Request $request)
-        {
-            $request->validate([
-                'moreFields.*.nama_skill' => 'required',
-                'moreFields.*.deskripsi_skill' => 'required',
-            ]);
-
-            foreach ($request->moreFields as $key => $value) {
-                // dd($value); // Add this line to dump and die
-                // dd([
-                //     'user_id' => \DB::table('profile')->where('akun_id', auth()->id())->value('id'),
-                //     'nama_skill' => $value['nama_skill'],
-                //     'deskripsi_skill' => $value['deskripsi_skill'],
-                //     'lokasi' => $value['lokasi'],
-                //     'tanggal_masuk_kerja' => $value['tanggal_masuk_kerja'],
-                //     'tanggal_keluar_kerja' => $value['tanggal_keluar_kerja'],
-                // ]);
-                Skill::create([
-                    'user_id' => \DB::table('profile')->where('akun_id', auth()->id())->value('id'),
-                    'nama_skill' => $value['nama_skill'],
-                    'deskripsi_skill' => $value['deskripsi_skill'],
-                ]);
-            }
-            return back();
-            // return redirect()->route('dashboard')->with('success', 'Data has been stored successfully.');
-        }
-
-        public function saveData(Request $request)
-    {
+    public function index()    {
+        $skill = \DB::table('skill')->paginate(10);
+        return view('crudSkill.index',compact('skill'))
+            ->with('i', (request()->input('page', 1) - 1) * 5);
+    }   
+    
+    public function create() {
+        return view('crudSkill.create');
+    }  
+    
+    public function store(Request $request) {
         $request->validate([
-            'moreFields.*.nama_skill' => 'required',
-            'moreFields.*.deskripsi_skill' => 'required',
+            'nama_skill' => 'required',
+            'deskripsi_skill' => 'required',
         ]);
-
-        $user_id = Profile::where('akun_id', auth()->id())->value('id');
-
-        foreach ($request->moreFields as $key => $value) {
-            if (!empty($value['id'])) {
-                // Update existing record
-                Skill::where('id', $value['id'])->update([
-                    'nama_skill' => $value['nama_skill'],
-                    'deskripsi_skill' => $value['deskripsi_skill'],
-                ]);
-            } else {
-                // Create new record
-                Skill::create([
-                    'user_id' => $user_id,
-                    'nama_skill' => $value['nama_skill'],
-                    'deskripsi_skill' => $value['deskripsi_skill'],
-                ]);
-            }
-        }
-
-        return response()->json(['message' => 'Data has been saved successfully.']);
+    
+        // Retrieve the user's profile ID
+        $profileId = \DB::table('profile')->where('akun_id', auth()->id())->value('id');
+        // Create the Skill with the associated profile ID
+        Skill::create([
+            'user_id' => $profileId,
+            'nama_skill' => $request->nama_skill,
+            'deskripsi_skill' => $request->deskripsi_skill,
+            // Add other fields as needed
+        ]);
+        // dd());
+        return redirect()->route('skill.index')
+                        ->with('success','Product created successfully.');
+    }
+    
+   
+    public function show(Skill $skill){
+        return view('crudSkill.show',compact('skill'));
+    }  
+    
+    public function edit(Skill $skill){
+        return view('crudSkill.edit',compact('skill'));
+    } 
+    
+    public function update(Request $request, Skill $skill){
+        $request->validate([
+            'nama_skill' => 'required',
+            'deskripsi_skill' => 'required',
+        ]);
+  
+        $skill->update($request->all());
+  
+        return redirect()->route('skill.index')
+                        ->with('success','Product updated successfully');
+    }  
+    
+    public function destroy(Skill $skill) {
+        $skill->delete();
+  
+        return redirect()->route('skill.index')
+                        ->with('success','Product deleted successfully');
     }
 }

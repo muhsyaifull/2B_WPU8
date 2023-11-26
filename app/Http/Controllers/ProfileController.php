@@ -80,6 +80,7 @@ class ProfileController extends Controller
             'tempat_lahir' => 'required',
             'tanggal_lahir' => 'required',
             'agama' => 'required',
+            'image_path' => 'required',
             'jenis_kelamin' => 'required',
             'no_telepon' => 'required',
             'email' => 'required',
@@ -115,10 +116,16 @@ class ProfileController extends Controller
             'tanggal_lahir' => $validatedData['tanggal_lahir'],
             'jenis_kelamin' => $validatedData['jenis_kelamin'],
             'agama' => $validatedData['agama'],
+            'image_path'=> $validatedData['image_path'],
             'no_telepon' => $validatedData['no_telepon'],
             'email' => $validatedData['email'],
             'akun_id' => $akun_id,
         ]);
+        if ($request->hasFile('image_path')) {
+            $request->file('image_path')->move('imageUser/', $request->file('image_path')->getClientOriginalName());
+            $profile->image_path = $request->file('image_path')->getClientOriginalName();
+            $profile->save();
+        }
 
         // Simpan data alamat terlebih dahulu
         $alamatData = [

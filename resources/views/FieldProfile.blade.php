@@ -4,7 +4,7 @@
 
 @section('content')
 
-<form action="{{ \DB::table('profile')->where('akun_id', auth()->id())->value('id') ? url('/Update-Profile') : url('/Create-Profile') }}" method="POST">
+<form action="{{ \DB::table('profile')->where('akun_id', auth()->id())->value('id') ? url('/Update-Profile') : url('/Create-Profile') }}" method="POST" enctype="multipart/form-data">
     @csrf
     @if(\DB::table('profile')->where('akun_id', auth()->id())->value('id'))
         @method('PUT')
@@ -21,7 +21,7 @@
                     <label for="inputImage" class="form-label">Upload Image</label>
                 </div>
                 <div class="col-md-6">
-                    <input type="file" id="inputImage" class="form-control" name="image" accept="image/*">
+                    <input type="file" id="inputImage" class="form-control" name="image_path">
                 </div>
             </div>
 
@@ -247,5 +247,6 @@
               document.getElementById('kelurahan').innerHTML = tampung;
           });
     });
+    
   </script>
 @endsection

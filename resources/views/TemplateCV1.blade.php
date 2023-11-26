@@ -15,7 +15,7 @@
     <div class="row">
       <div class="col-md-10" style="background-color: white">
         <section id="about" class="about">
-          <img src="assets/img/Foto1.jpg" alt="Foto1" width="180" height="240" class="d-inline-block align-text-top">
+          <img src="{{asset('imageUser/'. \DB::table('profile')->where('akun_id', auth()->id())->value('image_path'))}}" alt="Foto1" width="180" height="240" class="d-inline-block align-text-top">
           <div class="container">
 
             <div class="section-title">
@@ -58,31 +58,40 @@
                   <div class="row">
                     <div class="col-lg-6">
                       <ul>
-                        {{-- @dd(\DB::table('pendidikan')->where('user_id', \DB::table('profile')->where('akun_id', auth()->id())->value('id'))->value('jenjang')) --}}
-                        <li><i class="bi bi-chevron-right"></i> <strong>Nama Instansi :</strong><span class="text-besar bold">{{strtolower($pendidikan->value('nama_sekolah'))}} </span></li>
-                        <li><i class="bi bi-chevron-right"></i> <strong>Jenjang :</strong> <span>{{\DB::table('pendidikan')->where('user_id', \DB::table('profile')->where('akun_id', auth()->id())->value('id'))->value('jenjang')}}</span></li>
-                        <li><i class="bi bi-chevron-right"></i> <strong>Lokasi :</strong> <span>{{strtolower($pendidikan->value('lokasi'))}} </span></li>
-                        <li><i class="bi bi-chevron-right"></i> <strong>Tanggal Masuk - Tanggal Lulus : </strong> <span>( {{strtolower($pendidikan->value('tanggal_masuk'))}} ) - ( {{strtolower($pendidikan->value('tanggal_lulus'))}} )</span></li>
+                        @foreach(\DB::table('pendidikan')->where('user_id', \DB::table('profile')->where('akun_id', auth()->id())->value('id'))->get() as $pendidikan)
+                        <li style="margin-top: 10px;">
+                            <li><i class="bi bi-chevron-right"></i> <strong>Nama Instansi :</strong><span class="text-besar bold">{{ strtolower($pendidikan->nama_sekolah) }} </span></li>
+                            <li><i class="bi bi-chevron-right"></i> <strong>Jenjang :</strong> <span>{{ strtolower($pendidikan->jenjang) }}</span></li>
+                            <li><i class="bi bi-chevron-right"></i> <strong>Lokasi :</strong> <span>{{ strtolower($pendidikan->lokasi) }} </span></li>
+                            <li><i class="bi bi-chevron-right"></i> <strong>Tanggal Masuk - Tanggal Lulus : </strong> <span>( {{ strtolower($pendidikan->tanggal_masuk) }} ) - ( {{ strtolower($pendidikan->tanggal_lulus) }} )</span></li>
+                        @endforeach
+
                       </ul>
                     </div>
                 </div>
                 {{-- AKHIR RIWAYAT PENDIDIKAN --}}
                 
                 {{-- RIWAYAT PEKERJAAN --}}
+                {{-- @if (\DB::table('pekerjaan')->where('user_id', \DB::table('profile')->where('akun_id', auth()->id())->value('id'))->exists()) --}}
                 <div class="riwayat-pekerjaan mt-4">
                   <h3 class="bg-subtitlecv font-subjudul">Riwayat Pekerjaan</h3>
                   <div class="row">
                   <div class="col-lg-6">
                     <ul>
+                      @foreach(\DB::table('pekerjaan')->where('user_id', \DB::table('profile')->where('akun_id', auth()->id())->value('id'))->get() as $pekerjaan)
                       {{-- @dd(\DB::table('pekerjaan')->where('user_id', \DB::table('profile')->where('akun_id', auth()->id())->value('id'))->value('nama_perusahaan')) --}}
-                      <li><i class="bi bi-chevron-right"></i> <strong>Nama Perusahaan:</strong> <span>{{\DB::table('pekerjaan')->where('user_id', \DB::table('profile')->where('akun_id', auth()->id())->value('id'))->value('nama_perusahaan')}}</span></li>
-                      <li><i class="bi bi-chevron-right"></i> <strong>Nama Posisi:</strong> <span>{{strtolower($pekerjaan->value('posisi'))}} </span></li>
-                      <li><i class="bi bi-chevron-right"></i> <strong>Lokasi:</strong> <span>{{strtolower($pekerjaan->value('lokasi'))}} </span></li>
-                      <li><i class="bi bi-chevron-right"></i> <strong>Tanggal Masuk:</strong> <span>{{strtolower($pekerjaan->value('tanggal_masuk_kerja'))}} </span></li>
-                      <li><i class="bi bi-chevron-right"></i> <strong>Tanggal Lulus:</strong> <span>{{strtolower($pekerjaan->value('tanggal_keluar_kerja'))}} </span></li>
+                      <li style="margin-top: 10px;">
+                      <li><i class="bi bi-chevron-right"></i> <strong>Nama Perusahaan:</strong> <span>{{$pekerjaan->nama_perusahaan}}</span></li>
+                      <li><i class="bi bi-chevron-right"></i> <strong>Nama Posisi:</strong> <span>{{$pekerjaan->posisi}}</span></li>
+                      <li><i class="bi bi-chevron-right"></i> <strong>Lokasi:</strong> <span>{{$pekerjaan->lokasi}} </span></li>
+                      <li><i class="bi bi-chevron-right"></i> <strong>Tanggal Masuk:</strong> <span>{{$pekerjaan->tanggal_masuk_kerja}} </span></li>
+                      <li><i class="bi bi-chevron-right"></i> <strong>Tanggal Lulus:</strong> <span>{{$pekerjaan->tanggal_keluar_kerja}} </span></li>
+                      @endforeach
                     </ul>
                   </div>
                 </div>
+                {{-- @endif --}}
+                
                 {{-- AKHIR RIWAYAT PEKERJAAN --}}
     
                 {{-- SKILL --}}
@@ -91,9 +100,12 @@
                   <div class="row">
                     <div class="col-lg-6">
                       <ul>
+                        @foreach(\DB::table('skill')->where('user_id', \DB::table('profile')->where('akun_id', auth()->id())->value('id'))->get() as $skill)
                         {{-- @dd(\DB::table('pekerjaan')->where('user_id', \DB::table('profile')->where('akun_id', auth()->id())->value('id'))->value('nama_perusahaan')) --}}
-                        <li><i class="bi bi-chevron-right"></i> <strong>Nama Skill:</strong> <span>{{\DB::table('skill')->where('user_id', \DB::table('profile')->where('akun_id', auth()->id())->value('id'))->value('nama_skill')}}</span></li>
-                        <li><i class="bi bi-chevron-right"></i> <strong>Deskripsi:</strong> <span>{{strtolower($skill->value('deskripsi_skill'))}} </span></li>
+                        <li style="margin-top: 10px;">
+                        <li><i class="bi bi-chevron-right"></i> <strong>Nama Skill:</strong> <span>{{$skill->nama_skill}}</span></li>
+                        <li><i class="bi bi-chevron-right"></i> <strong>Deskripsi:</strong> <span>{{$skill->deskripsi_skill}} </span></li>
+                        @endforeach
                       </ul>
                     </div>
                 </div>

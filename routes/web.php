@@ -75,7 +75,9 @@ Route::get('/f', function () {
     return view('TemplateCV1');
 })->name('dashboard');
 // -------------------------------------------------
-
+Route::resource('pekerjaan', PekerjaanController::class);
+Route::resource('pendidikan', PendidikanController::class);
+Route::resource('skill', SkillController::class);
 
 Route::get('/Home', function () {
     return view('Home');
@@ -106,9 +108,9 @@ Route::get('/DataDiri', function () {
     return view('DataDiri');
 })->name('DataDiri');
 
-Route::get('/Pendidikan', [PendidikanController::class, 'index'])->name('pendidikan.index');
-Route::get('/Pendidikan/create', [PendidikanController::class, 'create'])->name('pendidikan.create');
-Route::post('/Pendidikan', [PendidikanController::class, 'store'])->name('pendidikan.store');
+// Route::get('/Pendidikan', [PendidikanController::class, 'index'])->name('pendidikan.index');
+// Route::get('/Pendidikan/create', [PendidikanController::class, 'create'])->name('pendidikan.create');
+// Route::post('/Pendidikan', [PendidikanController::class, 'store'])->name('pendidikan.store');
 
 
 
@@ -121,6 +123,9 @@ Route::get('/Pendidikan', function () {
     return view('RiwayatPendidikan');
 });
 
+Route::get('/z', function () {
+    return view('cropImage');
+});
 
 Route::get('/Prestasi', function () {
     return view('Prestasi');

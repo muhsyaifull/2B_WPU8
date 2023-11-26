@@ -6,12 +6,12 @@
     <title>@yield('title', 'Default Title')</title>
     <link href="bootstrap/css/bootstrap.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="{{ asset('assets/style.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="bootstrap/bootstrap-icons">
     <!-- Boxiocns CDN Link -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="icon" href="assets/img/Image.png" type="image/png">
+    <link rel="icon" href="{{ asset('assets/img/Image.png') }}" type="image/png">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
    </head>
 <body>
@@ -42,14 +42,14 @@
         <ul class="sub-menu">
           <li><a class="link_name" href="#">Input Profile</a></li>
           <li><a href="/a">Data Diri</a></li>
-          <li><a href="/b">Riwayat Pendidikan</a></li>
-          <li><a href="/c">Riwayat Pekerjaan</a></li>
-          <li><a href="/d">Skill</a></li>
+          <li><a href="/pendidikan">Riwayat Pendidikan</a></li>
+          <li><a href="/pekerjaan">Riwayat Pekerjaan</a></li>
+          <li><a href="/skill">Skill</a></li>
         </ul>
       </li>
 
       <li>
-        <a href="#">
+        <a href="/f">
           <i class="bi bi-file-earmark-person"></i>
           <span class="link_name">CV</span>
         </a>
@@ -93,11 +93,13 @@
       </li> --}}
       <li>
         <a href="#">
-          <i class='bx bx-compass' ></i>
-          <span class="link_name">Explore</span>
+          
+          <i class='bx bx' ><img src="{{ asset('assets/img/aboutUs.png') }}" alt="aboutUs" width="25" height="25"></i>
+          <span class="link_name">About Us</span>
         </a>
         <ul class="sub-menu blank">
-          <li><a class="link_name" href="/ProfilePage/1">Explore</a></li>
+          <li><a class="link_name" href="/ProfilePage/1">About Us</a></li>
+          
         </ul>
       </li>
 
@@ -156,7 +158,7 @@
     {{-- @yield('content') --}}
   </section>
 
-  <script src="assets/script.js"></script>
-
+  <script src="{{ asset('assets/script.js') }}"></script>
+  
 </body>
 </html>
